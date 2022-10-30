@@ -6,11 +6,11 @@ Please feel free to submit issues or pull request and give a star⭐️ if the r
 
 ## Screenshots
 
-![main_page](/home/cooper/Documents/sduBeamerTheme/img/main_page.png)
+![main_page](./img/main_page.png)
 
-![instance1](/home/cooper/Documents/sduBeamerTheme/img/instance1.png)
+![instance1](./img/instance1.png)
 
-![instance2](/home/cooper/Documents/sduBeamerTheme/img/instance2.png)
+![instance2](./img/instance2.png)
 
 ## Usage
 
@@ -32,6 +32,7 @@ Coming soon.
 ## Credit
 
 -   The original work of *Ura*, yet more information is missing. Check Ura's template on *overleaf*: https://www.overleaf.com/latex/templates/sdu-beamer-theme/vfnkydnwgrvc
+-   The `eps` file of the university's logo is from https://github.com/jshmsjh/SDU-Beamer-Theme.
 -   The work is based on [PKU-Beamer-Theme](https://github.com/inFaaa/PKU-Beamer-Theme).
 -   [PKU-Beamer-Theme](https://github.com/inFaaa/PKU-Beamer-Theme) is based on [THU-Beamer-Theme](https://github.com/tuna/THU-Beamer-Theme). Thanks to them all.
 
