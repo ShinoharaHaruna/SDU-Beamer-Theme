@@ -2,7 +2,7 @@
 
 SDU 的 Beamer 主题，用于学术报告、论文和演讲。
 
-请随时提交问题或拉取请求。如果该项目有帮助，欢迎 Star⭐️。
+请随时提交问题或提交 PR。如果该项目有帮助，欢迎 Star⭐️。
 
 [中文版](./README_ch.md), [English version](./README.md)
 
