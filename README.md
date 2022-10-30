@@ -4,6 +4,8 @@ A Beamer theme of SDU for academic report, thesis and talk.
 
 Please feel free to submit issues or pull request and give a star⭐️ if the repository helps.
 
+[中文版](./README_ch.md), [English version](./README.md)
+
 ## Screenshots
 
 ![main_page](./img/main_page.png)
