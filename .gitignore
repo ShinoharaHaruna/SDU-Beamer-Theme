@@ -1,2 +1,12 @@
-# Feel free to generate pdf files and it will be ignored.
+# Feel free to generate pdf files and all generated files will be ignored.
 *.pdf
+*.vrb
+*.toc
+*.synctex.gz
+*.snm
+*.out
+*.nav
+*.log
+*.blg
+*.bbl
+*.aux
