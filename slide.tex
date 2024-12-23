@@ -1,46 +1,25 @@
 \documentclass[aspectratio=169]{beamer}
-\usepackage{hyperref}
 
-\usepackage{fontspec}
-\usepackage{xeCJK}
-\setCJKsansfont[AutoFakeBold]{LXGW WenKai}
-\setmainfont{Times New Roman}
+% 字体设置 / Font settings
+\usepackage{fontspec} % 字体选择 / Font selection
+\usepackage{xeCJK} % 中文字体支持 / Chinese font support
+\setCJKsansfont[AutoFakeBold]{LXGW WenKai} % 设置中文无衬线字体 / Set Chinese sans-serif font
+\setCJKmainfont{LXGW WenKai} % 设置中文衬线字体 / Set Chinese serif font
+\setCJKmonofont{Sarasa Mono SC} % 设置中文等宽字体 / Set Chinese monospaced font
+\setmainfont{Times New Roman} % 设置主字体 / Set main font
 
-\usepackage[citestyle=authoryear, backend=biber]{biblatex}
-\addbibresource{ref.bib}
+% 参考文献 / References
+\usepackage[citestyle=authoryear, backend=biber]{biblatex} % 参考文献管理 / Bibliography management
+\addbibresource{ref.bib} % 添加参考文献文件 / Add bibliography file
 
-% other packages
-\usepackage{latexsym, amsmath, xcolor, multicol, booktabs, calligra}
-\usepackage{graphicx, pstricks, listings, stackengine}
-
+% 文档信息 / Document information
 \author{Sduer}
 \title{SDU Beamer Theme}
 \subtitle{毕业设计开题报告}
 \institute{山东大学xxx学院}
 \date{2024年12月}
+
 \usepackage{SDU}
-\usepackage{ulem}
-\usepackage{tikz}
-
-% defs
-\def\cmd#1{\texttt{\color{red}\footnotesize $\backslash$#1}}
-\def\env#1{\texttt{\color{blue}\footnotesize #1}}
-\definecolor{deepblue}{rgb}{0,0,0.5}
-\definecolor{deepred}{rgb}{0.6,0,0}
-\definecolor{deepgreen}{rgb}{0,0.5,0}
-\definecolor{halfgray}{gray}{0.55}
-
-\lstset{
-    basicstyle=\ttfamily\small,
-    keywordstyle=\bfseries\color{deepblue},
-    emphstyle=\ttfamily\color{deepred},    % Custom highlighting style
-    stringstyle=\color{deepgreen},
-    numbers=left,
-    numberstyle=\small\color{halfgray},
-    rulesepcolor=\color{red!20!green!20!blue!20},
-    frame=shadowbox,
-}
-
 
 \begin{document}
 
@@ -56,7 +35,6 @@
 \begin{frame}
     \tableofcontents[sectionstyle=show,subsectionstyle=show/shaded/hide,subsubsectionstyle=show/shaded/hide]
 \end{frame}
-
 
 \section{课题背景}
 
@@ -229,10 +207,10 @@
     \begin{minipage}{0.5\linewidth}
 \begin{lstlisting}[language=TeX]
 \begin{itemize}
-  \item A \item B
-  \item C
+  \item A
+  \item B
   \begin{itemize}
-    \item C-1
+    \item B-1
   \end{itemize}
 \end{itemize}
 \end{lstlisting}
@@ -241,9 +219,8 @@
         \begin{itemize}
             \item A
             \item B
-            \item C
             \begin{itemize}
-                \item C-1
+                \item B-1
             \end{itemize}
         \end{itemize}
     \end{minipage}

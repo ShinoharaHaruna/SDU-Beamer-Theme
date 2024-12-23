@@ -1,67 +1,119 @@
+% 设置为演示模式 / Set to presentation mode
 \mode<presentation>
 
+% 初始化节标题标志 / Initialize section header flag
 \newif\ifbeamer@secheader
 \beamer@secheaderfalse
 
+% 处理选项 / Process options
 %\DeclareOptionBeamer{secheader}{\beamer@secheadertrue}
 \ProcessOptionsBeamer
 
+% 使用外部主题 / Use outer theme
 \useoutertheme[footline=authorinstitutetitle]{smoothbars}
-\makeatletter % [add curpage/total page at the bottom](http://tex.stackexchange.com/questions/100838/beamer-dresden-theme-miniframes-appeareance-and-frame-number-insertion)
+
+% 颜色和图形支持 / Colors and graphics support
+\usepackage{xcolor} % 颜色支持 / Color support
+\usepackage{graphicx} % 插入图像 / Include graphics
+\usepackage{pstricks} % 高级图形处理 / Advanced graphics processing
+\usepackage{tikz} % 绘图 / Drawing
+
+% 自定义颜色 / Custom colors
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+\definecolor{halfgray}{gray}{0.55}
+
+% 代码显示设置 / Code display settings
+\usepackage{listings} % 插入代码 / Insert code
+\lstset{
+    basicstyle=\ttfamily\small,
+    keywordstyle=\bfseries\color{deepblue},
+    emphstyle=\ttfamily\color{deepred}, % 自定义高亮样式 / Custom highlighting style
+    stringstyle=\color{deepgreen},
+    numbers=left,
+    numberstyle=\small\color{halfgray},
+    rulesepcolor=\color{red!20!green!20!blue!20},
+    frame=shadowbox,
+}
+
+% 数学符号和公式支持 / Math symbols and formulas support
+\usepackage{amsmath} % 数学公式 / Math formulas
+
+% 表格支持 / Tables support
+\usepackage{booktabs} % 优雅的表格线 / Elegant table lines
+\usepackage{multicol} % 多栏布局 / Multi-column layout
+
+% 文本样式支持 / Text styles support
+\usepackage{latexsym} % 额外的符号 / Additional symbols
+\usepackage{calligra} % 花体字体 / Calligraphic font
+\usepackage{ulem} % 下划线和删除线 / Underlining and strikethrough
+
+% 超链接支持 / Hyperlinks support
+\usepackage{hyperref} % 生成超链接 / Create hyperlinks
+
+% 自定义命令 / Custom commands
+\def\cmd#1{\texttt{\color{red}\footnotesize $\backslash$#1}}
+\def\env#1{\texttt{\color{blue}\footnotesize #1}}
+
+% 自定义页脚格式 / Custom footer format
+\makeatletter
 \newcommand{\frameofframes}{/}
 \newcommand{\setframeofframes}[1]{\renewcommand{\frameofframes}{#1}}
-\setbeamertemplate{footline} 
-  {%
-    \begin{beamercolorbox}[colsep=1.5pt]{upper separation line foot}
-    \end{beamercolorbox}
-    \begin{beamercolorbox}[ht=2.5ex,dp=1.125ex,%
-      leftskip=.3cm,rightskip=.3cm plus1fil]{author in head/foot}%
-      \leavevmode{\usebeamerfont{author in head/foot}\insertshortauthor}%
-      \hfill%
-      {\usebeamerfont{institute in head/foot}\usebeamercolor[fg]{institute in head/foot}\insertshortinstitute}%
-    \end{beamercolorbox}%
-    \begin{beamercolorbox}[ht=2.5ex,dp=1.125ex,%
-      leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
-      {\usebeamerfont{title in head/foot}\insertshorttitle}%
-      \hfill%
-      {\usebeamerfont{frame number}\usebeamercolor[fg]{frame number}\insertframenumber~\frameofframes~\inserttotalframenumber}
-    \end{beamercolorbox}%
-    \begin{beamercolorbox}[colsep=1.5pt]{lower separation line foot}
-    \end{beamercolorbox}
-  }
+\setbeamertemplate{footline}{
+  \begin{beamercolorbox}[colsep=1.5pt]{upper separation line foot}
+  \end{beamercolorbox}
+  \begin{beamercolorbox}[ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]{author in head/foot}%
+    \leavevmode{\usebeamerfont{author in head/foot}\insertshortauthor}%
+    \hfill%
+    {\usebeamerfont{institute in head/foot}\usebeamercolor[fg]{institute in head/foot}\insertshortinstitute}%
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
+    {\usebeamerfont{title in head/foot}\insertshorttitle}%
+    \hfill%
+    {\usebeamerfont{frame number}\usebeamercolor[fg]{frame number}\insertframenumber~\frameofframes~\inserttotalframenumber}
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[colsep=1.5pt]{lower separation line foot}
+  \end{beamercolorbox}
+}
 \makeatother
 
+% 使用内部主题 / Use inner theme
 \useinnertheme{circles}
 
-%\useoutertheme{default}
-%\useinnertheme[shadow=true]{rounded}
-
-\xdefinecolor{peaking}{rgb}{0.5,0.0,0.0}  %RGB#820010
+% 自定义颜色和字体设置 / Custom color and font settings
+\xdefinecolor{peaking}{rgb}{0.5,0.0,0.0}  % RGB#820010
 \setbeamercolor{footline}{bg=peaking}
 \setbeamercolor{frametitle}{bg=peaking,fg=white}
 \setbeamercolor{title}{bg=peaking}
 \setbeamerfont{frametitle}{size=\large}
 
+% 设置参考文献和标题模板 / Set bibliography and caption templates
 \setbeamertemplate{bibliography item}[text]
 \setbeamertemplate{caption}[numbered]
 
+% 调整调色板颜色 / Adjust palette colors
 \setbeamercolor{palette primary}{use=structure,fg=white,bg=structure.fg}
 \setbeamercolor{palette secondary}{use=structure,fg=white,bg=structure.fg!75!black}
 \setbeamercolor{palette tertiary}{use=structure,fg=white,bg=structure.fg!50!black}
 \setbeamercolor{palette quaternary}{fg=white,bg=structure.fg!50!black}
-%\setbeamercolor*{sidebar}{use=structure,bg=structure.fg}
+
+% 设置标题颜色 / Set title color
 \setbeamercolor{titlelike}{parent=palette primary}
 
-%% try
+% 设置块标题颜色 / Set block title color
 \setbeamercolor{block title}{bg=peaking,fg=white}
 \setbeamercolor*{block title example}{use={normal text,example text},bg=white,fg=peaking}
+
+% 调整分隔线和项目颜色 / Adjust separation line and item colors
 \setbeamercolor{fine separation line}{}
 \setbeamercolor{item projected}{fg=white}
+
+% 调整侧边栏颜色 / Adjust sidebar colors
 \setbeamercolor{palette sidebar primary}{use=normal text,fg=normal text.fg}
 \setbeamercolor{palette sidebar quaternary}{use=structure,fg=structure.fg}
 \setbeamercolor{palette sidebar secondary}{use=structure,fg=structure.fg}
 \setbeamercolor{palette sidebar tertiary}{use=normal text,fg=normal text.fg}
-%\setbeamercolor{palette sidebar quaternary}{fg=white}
 \setbeamercolor{section in sidebar}{fg=brown}
 \setbeamercolor{section in sidebar shaded}{fg=grey}
 \setbeamercolor{separation line}{}
@@ -70,16 +122,19 @@
 \setbeamercolor{structure}{fg=peaking}
 \setbeamercolor{subsection in sidebar}{fg=brown}
 \setbeamercolor{subsection in sidebar shaded}{fg=grey}
+
+% 在每个节和子节开始时插入目录 / Insert table of contents at the beginning of each section and subsection
 \AtBeginSection[]{
-	\begin{frame}
-		\tableofcontents[sectionstyle=show/shaded,subsectionstyle=show/shaded/hide,subsubsectionstyle=show/shaded/hide]
-	\end{frame}
-}
-\AtBeginSubsection[]{
-	\begin{frame}
-		\tableofcontents[sectionstyle=show/shaded,subsectionstyle=show/shaded/hide,subsubsectionstyle=show/shaded/hide]
-	\end{frame}
+  \begin{frame}
+    \tableofcontents[sectionstyle=show/shaded,subsectionstyle=show/shaded/hide,subsubsectionstyle=show/shaded/hide]
+  \end{frame}
 }
 
-\mode
-<all>
+\AtBeginSubsection[]{
+  \begin{frame}
+    \tableofcontents[sectionstyle=show/shaded,subsectionstyle=show/shaded/hide,subsubsectionstyle=show/shaded/hide]
+  \end{frame}
+}
+
+% 设置模式为所有模式 / Set mode to all
+\mode<all>
