@@ -2,15 +2,18 @@
 \usepackage{ctex, hyperref}
 \usepackage[T1]{fontenc}
 
+\usepackage[citestyle=authoryear, backend=biber]{biblatex}
+\addbibresource{ref.bib}
+
 % other packages
-\usepackage{latexsym,amsmath,xcolor,multicol,booktabs,calligra}
-\usepackage{graphicx,pstricks,listings,stackengine}
+\usepackage{latexsym, amsmath, xcolor, multicol, booktabs, calligra}
+\usepackage{graphicx, pstricks, listings, stackengine}
 
 \author{Sduer}
 \title{SDU Beamer Theme}
 \subtitle{毕业设计开题报告}
 \institute{山东大学xxx学院}
-\date{2022年10月}
+\date{2024年12月}
 \usepackage{SDU}
 \usepackage{ulem}
 \usepackage{tikz}
@@ -58,7 +61,7 @@
     \begin{itemize}[<+-| alert@+>] % 当然，除了alert，手动在里面插 \pause 也行
         \item 大家都会\LaTeX{}，好多学校都有自己的Beamer主题
         \item 中文支持请选择 Xe\LaTeX{} 编译选项
-        \item 这份模板是基于Ura\cite{origin}的\LaTeX{}模板修改而来
+        \item 这份模板是基于\cite{origin}的\LaTeX{}模板修改而来
         \item Overleaf项目链接：\\
         \tiny\url{https://www.overleaf.com/latex/templates/sdu-beamer-theme/vfnkydnwgrvc}
         \item 此外，使用的校徽矢量图来自于\\\url{https://github.com/jshmsjh/SDU-Beamer-Theme}
@@ -368,10 +371,7 @@ $V = \frac{4}{3}\pi r^3$
 \section{参考文献}
 
 \begin{frame}[allowframebreaks]
-    \bibliographystyle{alpha}
-    \bibliography{ref}
-    % 如果参考文献太多的话，可以像下面这样调整字体：
-    % \tiny\bibliographystyle{alpha}
+    \printbibliography
 \end{frame}
 
 
