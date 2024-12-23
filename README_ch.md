@@ -22,6 +22,65 @@ SDU 的 Beamer 主题，用于学术报告、论文和演讲。
 
 提示：由 LaTeX Beamer 生成的幻灯片的文档格式为 `pdf`，因此有时与山大的某些课程要求不兼容，它们通常要求 `ppt / pptx` 文件。所以不妨试试 [pdf2pptx](https://github.com/intMojIBakE/pdf2pptx) 或者 [BeamerStyleSlides](https://github.com/wzpan/BeamerStyleSlides)！
 
+在 `slide.tex` 的开头，有以下配置：
+
+```latex
+% 字体设置 / Font settings
+\usepackage{fontspec} % 字体选择 / Font selection
+\usepackage{xeCJK} % 中文字体支持 / Chinese font support
+
+% 设置中文字体 / Set Chinese fonts
+\setCJKsansfont[AutoFakeBold]{LXGW WenKai}
+\setCJKmainfont{LXGW WenKai}
+\setCJKmonofont{Sarasa Mono SC}
+
+% 设置英文字体 / Set English fonts
+\setmainfont{Times New Roman} % 主字体 / Main font
+\setsansfont{Arial} % 无衬线字体 / Sans-serif font
+```
+
+通常需要根据自己的需求修改这些配置。如果使用 Linux，可以通过 `fc-list` 命令查看系统中已安装的字体，或者 `fc-list :lang=zh` 寻找中文字体。
+
+---
+
+对于 Visual Studio Code 用户，如果不想安装 `TeXstudio`，可以安装插件 `LaTeX Workshop`，在 VS Code 中直接编写 LaTeX。
+
+在 `Settings.json` 中找到并修改以下配置：
+
+```json
+"latex-workshop.latex.tools": [
+    {
+        "name": "biber",
+        "command": "biber",
+        "args": [
+            "%DOCFILE%"
+        ]
+    },
+    {
+        "name": "xelatex",
+        "command": "xelatex",
+        "args": [
+            "-synctex=1",
+            "-interaction=nonstopmode",
+            "%DOC%"
+        ],
+    },
+    ……
+],
+
+"latex-workshop.latex.recipes": [
+    {
+        "name": "xelatex -> biber -> xelatex",
+        "tools": [
+            "xelatex",
+            "biber",
+            "xelatex",
+        ]
+    },
+    ……
+]
+```
+
 ## 有用的网站
 
 -   在线创建 LaTeX 表格：https://www.tablesgenerator.com/
@@ -33,11 +92,11 @@ SDU 的 Beamer 主题，用于学术报告、论文和演讲。
 
 ## 感谢
 
--   SDU-Beamer-Theme 的原作者是 _Ura_，然而缺少更多相关信息。在 _overleaf_ 上查看原项目: https://www.overleaf.com/latex/templates/sdu-beamer-theme/vfnkydnwgrvc
+-   SDU-Beamer-Theme 的原作者是 *Ura*，然而缺少更多相关信息。在 *overleaf* 上查看原项目: https://www.overleaf.com/latex/templates/sdu-beamer-theme/vfnkydnwgrvc
 -   山大的 `eps` 矢量图校徽来自于：https://github.com/jshmsjh/SDU-Beamer-Theme
 -   本作品基于 [PKU-Beamer-Theme](https://github.com/inFaaa/PKU-Beamer-Theme)。
 -   [PKU-Beamer-Theme](https://github.com/inFaaa/PKU-Beamer-Theme) 基于 [THU-Beamer-Theme](https://github.com/tuna/THU-Beamer-Theme)。对上述所有项目表示感谢。
 
 ## 协议
 
-该仓库遵循 _MIT 协议_。
+该仓库遵循 *MIT 协议*。
