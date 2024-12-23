@@ -8,11 +8,11 @@ Please feel free to submit issues or pull request and give a star⭐️ if the r
 
 ## Screenshots
 
-![main_page](./img/main_page.png)
+![main_page](./img/README/main_page.png)
 
-![instance1](./img/instance1.png)
+![instance1](./img/README/instance1.png)
 
-![instance2](./img/instance2.png)
+![instance2](./img/README/instance2.png)
 
 ## Usage
 

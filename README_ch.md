@@ -8,11 +8,11 @@ SDU 的 Beamer 主题，用于学术报告、论文和演讲。
 
 ## 截图
 
-![main_page](./img/main_page.png)
+![main_page](./img/README/main_page.png)
 
-![instance1](./img/instance1.png)
+![instance1](./img/README/instance1.png)
 
-![instance2](./img/instance2.png)
+![instance2](./img/README/instance2.png)
 
 ## 使用方法
 
