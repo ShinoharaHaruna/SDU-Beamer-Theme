@@ -32,7 +32,7 @@
     \titlepage
     \begin{figure}[htpb]
         \begin{center}
-            \includegraphics[width=0.1\linewidth]{pic/SDU.eps}
+            \includegraphics[width=0.1\linewidth]{img/Example/SDU.eps}
         \end{center}
     \end{figure}
 \end{frame}
@@ -65,16 +65,15 @@
         \item 本模板来源自 \newline \url{https://www.latexstudio.net/archives/4051.html}
         \item 但是最初的 \href{http://far.tooold.cn/post/latex/beamertsinghua}{\color{purple}{link}} \cite{origin}已经失效了
         \newline
-        \item 基于SDU-Beamer-Theme，作出的修改有：
+        \item 基于 SDU-Beamer-Theme，作出的修改有：
             \begin{itemize}
                 \item \sout{都什么年代，还在用传统长宽比？}默认使用16:9的长宽比
-                \item 用矢量图保证校徽的清晰
                 \item 用GitHub托管项目，欢迎issue/fork/star
-                \item 加入了删除线的包
+                \item 补充一些常用的包，弃用了一些包而转向其他选项
+                \item 大规模重构项目结构，补充完善的中英文注释
             \end{itemize}
     \end{itemize}
 \end{frame}
-
 
 \section{研究内容}
 
@@ -84,7 +83,7 @@
     \begin{itemize}
         \item 顶栏的小点变成一行而不是多行
         \item 中文采用楷书
-        \item 剩下我改了啥我也忘了……我16年魔改的，都四年过去了（x
+        \item 剩下我改了啥我也忘了……我16年魔改的，都四年过去了（x\footnote{这是原作者说的（}
         \item 更多该模板的功能可以参考 \url{https://www.latexstudio.net/archives/4051.html}
         \item 下面列举出了一些Beamer的用法，部分节选自 \url{https://tuna.moe/event/2018/latex/}
     \end{itemize}
@@ -93,13 +92,13 @@
 \subsection{如何更好地做Beamer}
 
 \begin{frame}{Why Beamer}
-    \begin{itemize}
-        \item \LaTeX 广泛用于学术界，期刊会议论文模板
-    \end{itemize}
+    \begin{center}
+        \text{\LaTeX 广泛用于学术界，期刊会议论文模板}
+    \end{center}
     \begin{table}[h]
         \centering
         \begin{tabular}{c|c}
-            Microsoft\textsuperscript{\textregistered}  Word & \LaTeX \\
+            Microsoft\textsuperscript{\textregistered} Word & \LaTeX \\
             \hline
             文字处理工具 & 专业排版软件 \\
             容易上手，简单直观 & 容易上手 \\
@@ -121,7 +120,8 @@
         \end{equation*}
     \end{exampleblock}
 \end{frame}
-\begin{frame}
+
+\begin{frame}{排版举例}
     \begin{exampleblock}{多行多列公式\footnote{如果公式中有文字出现，请用 $\backslash$mathrm\{\} 或者 $\backslash$text\{\} 包含，不然就会变成 $clip$，在公式里看起来比 $\mathrm{clip}$ 丑非常多。}\footnote{另外，由于更改了长宽比，所以footnote的位置会显得非常低。有时会覆盖右下角的功能键，需要微调。}}
         % 使用 & 分隔
         \begin{align}
@@ -131,53 +131,44 @@
     \end{exampleblock}
 \end{frame}
 
-\begin{frame}
-    \begin{exampleblock}{编号多行公式}
-        % Taken from Mathmode.tex
-        \begin{multline}
-            A=\lim_{n\rightarrow\infty}\Delta x\left(a^{2}+\left(a^{2}+2a\Delta x+\left(\Delta x\right)^{2}\right)\right.\label{eq:reset}\\
-            +\left(a^{2}+2\cdot2a\Delta x+2^{2}\left(\Delta x\right)^{2}\right)\\
-            +\left(a^{2}+2\cdot3a\Delta x+3^{2}\left(\Delta x\right)^{2}\right)\\
-            +\ldots\\
-            \left.+\left(a^{2}+2\cdot(n-1)a\Delta x+(n-1)^{2}\left(\Delta x\right)^{2}\right)\right)\\
-            =\frac{1}{3}\left(b^{3}-a^{3}\right)
-        \end{multline}
-    \end{exampleblock}
+\begin{frame}{编号多行公式}
+    % Taken from Mathmode.tex
+    \begin{multline}
+        A=\lim_{n\rightarrow\infty}\Delta x\left(a^{2}+\left(a^{2}+2a\Delta x+\left(\Delta x\right)^{2}\right)\right.\label{eq:reset}\\
+        +\left(a^{2}+2\cdot2a\Delta x+2^{2}\left(\Delta x\right)^{2}\right)\\
+        +\left(a^{2}+2\cdot3a\Delta x+3^{2}\left(\Delta x\right)^{2}\right)\\
+        +\ldots\\
+        \left.+\left(a^{2}+2\cdot(n-1)a\Delta x+(n-1)^{2}\left(\Delta x\right)^{2}\right)\right)\\
+        =\frac{1}{3}\left(b^{3}-a^{3}\right)
+    \end{multline}
 \end{frame}
 
 \begin{frame}{图形与分栏}
-    % From thuthesis user guide.
-    \begin{minipage}[c]{0.3\linewidth}
-        \psset{unit=0.8cm}
-        \begin{pspicture}(-1.75,-3)(3.25,4)
-            \psline[linewidth=0.25pt](0,0)(0,4)
-            \rput[tl]{0}(0.2,2){$\vec e_z$}
-            \rput[tr]{0}(-0.9,1.4){$\vec e$}
-            \rput[tl]{0}(2.8,-1.1){$\vec C_{ptm{ext}}$}
-            \rput[br]{0}(-0.3,2.1){$\theta$}
-            \rput{25}(0,0){%
-            \psframe[fillstyle=solid,fillcolor=lightgray,linewidth=.8pt](-0.1,-3.2)(0.1,0)}
-            \rput{25}(0,0){%
-            \psellipse[fillstyle=solid,fillcolor=yellow,linewidth=3pt](0,0)(1.5,0.5)}
-            \rput{25}(0,0){%
-            \psframe[fillstyle=solid,fillcolor=lightgray,linewidth=.8pt](-0.1,0)(0.1,3.2)}
-            \rput{25}(0,0){\psline[linecolor=red,linewidth=1.5pt]{->}(0,0)(0.,2)}
-%           \psRotation{0}(0,3.5){$\dot\phi$}
-%           \psRotation{25}(-1.2,2.6){$\dot\psi$}
-            \psline[linecolor=red,linewidth=1.25pt]{->}(0,0)(0,2)
-            \psline[linecolor=red,linewidth=1.25pt]{->}(0,0)(3,-1)
-            \psline[linecolor=red,linewidth=1.25pt]{->}(0,0)(2.85,-0.95)
-            \psarc{->}{2.1}{90}{112.5}
-            \rput[bl](.1,.01){C}
-        \end{pspicture}
-    \end{minipage}\hspace{1cm}
-    \begin{minipage}{0.5\linewidth}
-        \medskip
-        %\hspace{2cm}
-        \begin{figure}[h]
+    \begin{minipage}{0.5\textwidth}
+        \begin{figure}[htpb]
             \centering
-            \includegraphics[height=.4\textheight]{pic/dtmf.pdf}
+            \includegraphics[width=0.7\linewidth]{img/Example/SimpleDistributedStorageArchitecture.png}
+            \caption{分布式存储系统架构示意图}
         \end{figure}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.4\textwidth}
+        \begin{columns}[t]
+            \begin{column}{0.5\textwidth}
+                \begin{itemize}
+                    \item 分布式存储
+                    \item 一致性哈希
+                    \item 数据分片
+                \end{itemize}
+            \end{column}
+            \begin{column}{0.5\textwidth}
+                \begin{itemize}
+                    \item 数据冗余
+                    \item 数据恢复
+                    \item 数据一致性
+                \end{itemize}
+            \end{column}
+        \end{columns}
     \end{minipage}
 \end{frame}
 
@@ -186,14 +177,12 @@
         \centering
         \footnotesize
         \begin{tabular}{llll}
-            \cmd{chapter} & \cmd{section} & \cmd{subsection} & \cmd{paragraph} \\
-            章 & 节 & 小节 & 带题头段落 \\\hline
             \cmd{centering} & \cmd{emph} & \cmd{verb} & \cmd{url} \\
-            居中对齐 & 强调 & 原样输出 & 超链接 \\\hline
+            居中对齐 & 强调 & 原样输出 & 超链接 \\ \hline
             \cmd{footnote} & \cmd{item} & \cmd{caption} & \cmd{includegraphics} \\
-            脚注 & 列表条目 & 标题 & 插入图片 \\\hline
+            脚注 & 列表条目 & 标题 & 插入图片 \\ \hline
             \cmd{label} & \cmd{cite} & \cmd{ref} \\
-            标号 & 引用参考文献 & 引用图表公式等\\\hline
+            标号 & 引用参考文献 & 引用图表公式等\\ \hline
         \end{tabular}
     \end{exampleblock}
     \begin{exampleblock}{环境}
@@ -229,12 +218,13 @@
             \end{itemize}
         \end{itemize}
     \end{minipage}
-    \medskip
-    \pause
+\end{frame}
+
+\begin{frame}[fragile]{\LaTeX{} 环境命令举例}
     \begin{minipage}{0.5\linewidth}
 \begin{lstlisting}[language=TeX]
 \begin{enumerate}
-  \item 巨佬 \item 大佬
+  \item 巨佬
   \item 萌新
   \begin{itemize}
     \item[n+e] 瑟瑟发抖
@@ -245,7 +235,6 @@
     \begin{minipage}{0.3\linewidth}
         \begin{enumerate}
             \item 巨佬
-            \item 大佬
             \item 萌新
             \begin{itemize}
                 \item[n+e] 瑟瑟发抖
@@ -260,9 +249,9 @@
 \begin{lstlisting}[language=TeX]
 $V = \frac{4}{3}\pi r^3$
 
-\[
+$$
   V = \frac{4}{3}\pi r^3
-\]
+$$
 
 \begin{equation}
   \label{eq:vsphere}
@@ -272,9 +261,9 @@ $V = \frac{4}{3}\pi r^3$
         \end{column}
         \begin{column}{.4\textwidth}
             $V = \frac{4}{3}\pi r^3$
-            \[
+            $$
                 V = \frac{4}{3}\pi r^3
-            \]
+            $$
             \begin{equation}
                 \label{eq:vsphere}
                 V = \frac{4}{3}\pi r^3
@@ -286,39 +275,41 @@ $V = \frac{4}{3}\pi r^3$
     \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]
+\begin{frame}[fragile]{表格与公式引用}
     \begin{columns}
-        \column{.6\textwidth}
-\begin{lstlisting}[language=TeX]
-    \begin{table}[htbp]
-      \caption{编号与含义}
-      \label{tab:number}
-      \centering
-      \begin{tabular}{cl}
-        \toprule
-        编号 & 含义 \\
-        \midrule
-        1 & 4.0 \\
-        2 & 3.7 \\
-        \bottomrule
-      \end{tabular}
-    \end{table}
-    公式~(\ref{eq:vsphere}) 的
-    编号与含义请参见
-    表~\ref{tab:number}。
+        \column{.5\textwidth}
+\begin{lstlisting}[language=TeX, basicstyle=\tiny, xleftmargin=2em, xrightmargin=2em]
+\begin{table}[htbp]
+  \caption{编号与含义}
+  \label{tab:number}
+  \centering
+  \begin{tabular}{cc}
+    \toprule
+    编号 & 含义 \\
+    \midrule
+    1 & 4.0 \\
+    2 & 3.7 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+公式~(\ref{eq:vsphere})的编号
+与含义请参见表~\ref{tab:number}。
 \end{lstlisting}
         \column{.4\textwidth}
         \begin{table}[htpb]
             \centering
             \caption{编号与含义}
             \label{tab:number}
-            \begin{tabular}{cl}\toprule
-                编号 & 含义 \\\midrule
-                1 & 4.0\\
-                2 & 3.7\\\bottomrule
+            \begin{tabular}{cc}
+                \toprule
+                编号 & 含义 \\
+                \midrule
+                1 & 4.0 \\
+                2 & 3.7 \\
+                \bottomrule
             \end{tabular}
         \end{table}
-        \normalsize 公式~(\ref{eq:vsphere})的编号与含义请参见表~\ref{tab:number}。
+        公式~(\ref{eq:vsphere})的编号与含义请参见表~\ref{tab:number}。
     \end{columns}
 \end{frame}
 
@@ -338,13 +329,14 @@ $V = \frac{4}{3}\pi r^3$
     \end{itemize}
     \begin{figure}[htpb]
         \centering
-        \includegraphics[width=0.1\linewidth]{pic/SDU.eps}
+        \includegraphics[width=0.1\linewidth]{img/Example/SDU.eps}
         \caption{这个校徽就是矢量图}
     \end{figure}
 \end{frame}
 
 \section{计划进度}
-\begin{frame}
+
+\begin{frame}{进度安排}
     \begin{itemize}
         \item 一月：完成文献调研
         \item 二月：复现并评测各种Beamer主题美观程度
