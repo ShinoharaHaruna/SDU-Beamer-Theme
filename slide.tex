@@ -1,6 +1,10 @@
 \documentclass[aspectratio=169]{beamer}
-\usepackage{ctex, hyperref}
-\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setCJKsansfont[AutoFakeBold]{LXGW WenKai}
+\setmainfont{Times New Roman}
 
 \usepackage[citestyle=authoryear, backend=biber]{biblatex}
 \addbibresource{ref.bib}
@@ -40,7 +44,6 @@
 
 \begin{document}
 
-\kaishu
 \begin{frame}
     \titlepage
     \begin{figure}[htpb]
