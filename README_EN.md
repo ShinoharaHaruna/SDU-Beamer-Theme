@@ -6,7 +6,7 @@ Please feel free to submit issues or pull request and give a star⭐️ if the r
 
 [中文版](./README.md)
 
-## Screenshots
+## Preview
 
 ![main_page](./img/README/main_page.png)
 

@@ -6,7 +6,7 @@ SDU 的 Beamer 主题，用于学术报告、论文和演讲。
 
 [English version](./README_EN.md)
 
-## 截图
+## 预览
 
 ![main_page](./img/README/main_page.png)
 
@@ -21,25 +21,6 @@ SDU 的 Beamer 主题，用于学术报告、论文和演讲。
 3.  克隆此存储库，然后您可以对其进行任何修改！
 
 提示：由 LaTeX Beamer 生成的幻灯片的文档格式为 `pdf`，因此有时与山大的某些课程要求不兼容，它们通常要求 `ppt / pptx` 文件。所以不妨试试 [pdf2pptx](https://github.com/intMojIBakE/pdf2pptx) 或者 [BeamerStyleSlides](https://github.com/wzpan/BeamerStyleSlides)！
-
-在 `slide.tex` 的开头，有以下配置：
-
-```latex
-% 字体设置 / Font settings
-\usepackage{fontspec} % 字体选择 / Font selection
-\usepackage{xeCJK} % 中文字体支持 / Chinese font support
-
-% 设置中文字体 / Set Chinese fonts
-\setCJKsansfont[AutoFakeBold]{LXGW WenKai}
-\setCJKmainfont{LXGW WenKai}
-\setCJKmonofont{Sarasa Mono SC}
-
-% 设置英文字体 / Set English fonts
-\setmainfont{Times New Roman} % 主字体 / Main font
-\setsansfont{Arial} % 无衬线字体 / Sans-serif font
-```
-
-通常需要根据自己的需求修改这些配置。如果使用 Linux，可以通过 `fc-list` 命令查看系统中已安装的字体，或者 `fc-list :lang=zh` 寻找中文字体。
 
 ---
 
@@ -80,6 +61,32 @@ SDU 的 Beamer 主题，用于学术报告、论文和演讲。
     ……
 ]
 ```
+
+### 字体
+
+> Update 2025/03/03: 在 fonts 目录下添加了
+> 1. 落霞孤鹜字体。本项目不持有任何相关版权，依据 https://github.com/lxgw/LxgwWenKai#%E8%AE%B8%E5%8F%AF 使用
+> 2. Arial 字体，使用 GitHub Actions 编译意味着用户接受 Microsoft 的 EULA，以使用 Arial 字体。本项目不持有相关任何版权。
+> 3. Sarasa Mono SC 字体。仓库地址：https://github.com/be5invis/Sarasa-Gothic；本项目不持有相关任何版权。
+
+在 `slide.tex` 的开头，有以下配置：
+
+```latex
+% 字体设置 / Font settings
+\usepackage{fontspec} % 字体选择 / Font selection
+\usepackage{xeCJK} % 中文字体支持 / Chinese font support
+
+% 设置中文字体 / Set Chinese fonts
+\setCJKsansfont[AutoFakeBold]{LXGW WenKai}
+\setCJKmainfont{LXGW WenKai}
+\setCJKmonofont{Sarasa Mono SC}
+
+% 设置英文字体 / Set English fonts
+\setmainfont{Times New Roman} % 主字体 / Main font
+\setsansfont{Arial} % 无衬线字体 / Sans-serif font
+```
+
+通常需要根据自己的需求修改这些配置。如果使用 Linux，可以通过 `fc-list` 命令查看系统中已安装的字体，或者 `fc-list :lang=zh` 寻找中文字体。
 
 ## 有用的网站
 

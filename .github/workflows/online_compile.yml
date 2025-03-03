@@ -1,0 +1,82 @@
+name: Compile PDF slides
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Cache LaTeX Environment
+        uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+          packages: texlive-latex-base texlive-extra-utils texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra biber fontconfig latex-cjk-all texlive-pstricks
+
+      - name: Reconfigure tex-common
+        run: |
+          sudo dpkg --configure -a
+
+      - name: Install Custom Fonts
+        run: |
+          set -e
+          # 安装 Microsoft 字体 (包括 Arial)
+          echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | sudo debconf-set-selections
+          sudo apt-get install -y ttf-mscorefonts-installer
+
+          # 复制字体文件到系统字体目录 (假设字体文件在仓库的 fonts/ 目录下)
+          sudo mkdir -p /usr/share/fonts/opentype/custom-fonts
+          cp fonts/* /usr/share/fonts/opentype/custom-fonts/
+
+          # 更新字体缓存
+          sudo fc-cache -f -v
+
+      - name: Check Font List
+        run: |
+          fc-list
+
+      - name: Clean Auxiliary Files
+        run: |
+          rm -f *.aux *.log *.toc *.dvi *.bbl *.blg *.pdf
+
+      - name: Install XeLaTeX
+        run: |
+          sudo apt-get install -y texlive-xetex
+
+      - name: Compile LaTeX document
+        run: |
+          set -e
+          TEX_FILE="slide.tex"
+
+          # 检查文件是否存在
+          if [ ! -f "$TEX_FILE" ]; then
+            echo "Error: LaTeX file '$TEX_FILE' not found."
+            exit 1
+          fi
+
+          echo "Start compiling $TEX_FILE ..."
+
+          # 编译命令
+          echo "# STEP 1: xelatex"
+          xelatex -synctex=1 -interaction=nonstopmode $TEX_FILE
+          echo "# STEP 2: biber"
+          biber $(basename $TEX_FILE .tex)
+          echo "# STEP 3: xelatex"
+          xelatex -synctex=1 -interaction=nonstopmode $TEX_FILE
+
+      - name: Add PDF to repository
+        run: |
+          git add slide.pdf  # 假设 PDF 文件名为 slide.pdf
+
+      - name: Config git user and user.email and push commit
+        run: |
+          git config user.name github-actions
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add .
+          git commit -am "Auto compile LaTeX by GitHub Actions $(date)"
+          git push origin -f
