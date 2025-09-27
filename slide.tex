@@ -1,4 +1,8 @@
+% !TeX program = xelatex
 \documentclass[aspectratio=169]{beamer}
+
+% 如果在 Overleaf 上编译，注意切换到 XeLaTeX 作为编译器
+% If you are using Overleaf, switch to XeLaTeX as the compiler
 
 % 字体设置 / Font settings
 \usepackage{fontspec} % 字体选择 / Font selection
@@ -13,6 +17,20 @@
 \setmainfont{Times New Roman} % 主字体 / Main font
 \setsansfont{Arial} % 无衬线字体 / Sans-serif font
 
+% Overleaf 方案（无须自定义字体）/ Overleaf solution (no need to customize fonts)
+% \setCJKsansfont{FandolHei}[
+%   BoldFont = FandolHei-Bold
+% ]
+% \setCJKmainfont{FandolSong}[
+%   BoldFont = FandolSong-Bold,
+%   ItalicFont = FandolKai,
+%   BoldItalicFont = FandolKai
+% ]
+% \setCJKmonofont{FandolFang}
+
+% \usepackage{newpxtext}
+% \usepackage{newpxmath}
+
 % 参考文献 / References
 \usepackage[citestyle=authoryear, backend=biber]{biblatex} % 参考文献管理 / Bibliography management
 \addbibresource{ref.bib} % 添加参考文献文件 / Add bibliography file
@@ -22,7 +40,7 @@
 \title{SDU Beamer Theme}
 \subtitle{毕业设计开题报告}
 \institute{山东大学xxx学院}
-\date{2024年12月}
+\date{2025年9月}
 
 \usepackage{SDU}
 
