@@ -3,6 +3,13 @@
 
 % 如果在 Overleaf 上编译，注意切换到 XeLaTeX 作为编译器
 % If you are using Overleaf, switch to XeLaTeX as the compiler
+%
+% 推荐编译方式 / Recommended toolchain:
+%   latexmk        （读取 .latexmkrc，自动执行 xelatex -> biber -> xelatex 直至收敛）
+% 手动等价命令 / Manual equivalent:
+%   xelatex slide.tex && biber slide && xelatex slide.tex && xelatex slide.tex
+% 不推荐使用 bibtex，本项目按 biber 配置。
+% bibtex is not recommended: this project is configured for biber.
 
 % 字体设置 / Font settings
 \usepackage{fontspec} % 字体选择 / Font selection
@@ -28,24 +35,26 @@
 % ]
 % \setCJKmonofont{FandolFang}
 
-% \usepackage{newpxtext}
-% \usepackage{newpxmath}
-
 % 参考文献 / References
-\usepackage[citestyle=authoryear, backend=biber]{biblatex} % 参考文献管理 / Bibliography management
+\usepackage[style=numeric-comp, backend=biber]{biblatex} % 参考文献管理 / Bibliography management
 \addbibresource{ref.bib} % 添加参考文献文件 / Add bibliography file
 
 % 文档信息 / Document information
-\author{Sduer}
+\author{篠原 はるな}
 \title{SDU Beamer Theme}
-\subtitle{毕业设计开题报告}
-\institute{山东大学xxx学院}
-\date{2025年10月}
+\subtitle{山大风格 Beamer 模板与简易指南}
+\institute{山东大学 软件学院}
+\date{\today}
 
 \usepackage{SDU}
 
+% 让引用、目录、链接以主题色显示，便于辨认
+% Color citations, TOC entries, and links in the theme color
+\hypersetup{colorlinks=true, linkcolor=., citecolor=peaking, urlcolor=peaking!70!black}
+
 \begin{document}
 
+% 标题页 / Title page
 \begin{frame}
     \titlepage
     \begin{figure}[htpb]
@@ -55,321 +64,323 @@
     \end{figure}
 \end{frame}
 
+% 目录页 / Table of contents
 \begin{frame}
     \tableofcontents[sectionstyle=show,subsectionstyle=show/shaded/hide,subsubsectionstyle=show/shaded/hide]
 \end{frame}
 
-\section{课题背景}
+\section{模板简介}
 
-\begin{frame}{用Beamer很高大上？}
-    \begin{itemize}[<+-| alert@+>] % 当然，除了alert，手动在里面插 \pause 也行
-        \item 大家都会\LaTeX{}，好多学校都有自己的Beamer主题
-        \item 中文支持请选择 Xe\LaTeX{} 编译选项
-        \item 这份模板是基于\cite{origin}的\LaTeX{}模板修改而来
-        \item Overleaf项目链接：\\
-              \tiny\url{https://www.overleaf.com/latex/templates/sdu-beamer-theme/vfnkydnwgrvc}
-        \item 此外，使用的校徽矢量图来自于\\\url{https://github.com/jshmsjh/SDU-Beamer-Theme}
-    \end{itemize}
-\end{frame}
+\subsection{主题特性}
 
-\section{研究现状}
-
-\subsection{Beamer主题分类}
-
-\begin{frame}
+\begin{frame}{模板简介}
+    本模板是面向山东大学的 \LaTeX{} Beamer 主题，适用于学术汇报、
+    开题与答辩等场合，主要特性包括：
     \begin{itemize}
-        \item 有一些 \LaTeX{} 自带的
-        \item 有一些Tsinghua的
-        \item 本模板来源自 \newline \url{https://www.latexstudio.net/archives/4051.html}
-        \item 但是最初的 \href{http://far.tooold.cn/post/latex/beamertsinghua}{\color{purple}{link}} \cite{origin}已经失效了
-              \newline
-        \item 基于 SDU-Beamer-Theme，作出的修改有：
-              \begin{itemize}
-                  \item \sout{都什么年代，还在用传统长宽比？}默认使用16:9的长宽比
-                  \item 用GitHub托管项目，欢迎issue/fork/star
-                  \item 补充一些常用的包，弃用了一些包而转向其他选项
-                  \item 大规模重构项目结构，补充完善的中英文注释
-              \end{itemize}
+        \item 默认 \(16:9\) 宽屏长宽比，配色以山大红（CMYK 26/100/100/28）为主色
+        \item 使用 Xe\LaTeX{} 编译，通过 \texttt{xeCJK} 支持中文排版
+        \item 配色集中在 \texttt{SDUcolortheme.sty}，改一处即可整体换色
+        \item 每个 section 和 subsection 前自动插入目录页
+        \item 预置代码高亮、三线表、参考文献等常用配置
     \end{itemize}
 \end{frame}
 
-\section{研究内容}
+\subsection{历史沿革}
 
-\subsection{美化主题}
-
-\begin{frame}{这一份主题与原始的THU Beamer Theme区别在于}
+\begin{frame}{历史沿革}
+    本模板的谱系可追源到早期的清华 Beamer 主题\footnote{最初版本发布在 latexstudio.net，原始下载链接现已失效。}，
+    演化过程如下（各项目地址见文末参考文献）：
     \begin{itemize}
-        \item 顶栏的小点变成一行而不是多行
-        \item 中文采用楷书
-        \item 剩下我改了啥我也忘了……我16年魔改的，都四年过去了（x\footnote{这是原作者说的（}
-        \item 更多该模板的功能可以参考 \url{https://www.latexstudio.net/archives/4051.html}
-        \item 下面列举出了一些Beamer的用法，部分节选自 \url{https://tuna.moe/event/2018/latex/}
+        \item \textbf{THU-Beamer-Theme}：清华大学 TUNA 协会维护的主题 \cite{thu}
+        \item \textbf{PKU-Beamer-Theme}：在 THU 主题基础上为北大改配色的衍生版本 \cite{pku}
+        \item \textbf{SDU-Beamer-Theme}：由 Ura 在 PKU 主题基础上修改配色与布局而成 \cite{origin}
+        \item \textbf{本仓库}：在 SDU 主题基础上重构：默认 \(16:9\) 长宽比、
+              配色抽离为 \texttt{SDUcolortheme.sty}、
+              补充中英文注释、接入 GitHub Actions 自动编译
     \end{itemize}
+    校徽矢量图来自 \cite{sdulogo}。
 \end{frame}
 
-\subsection{如何更好地做Beamer}
+\subsection{项目结构}
 
-\begin{frame}{Why Beamer}
-    \begin{center}
-        \text{\LaTeX 广泛用于学术界，期刊会议论文模板}
-    \end{center}
+\begin{frame}{项目结构}
     \begin{table}[h]
         \centering
-        \begin{tabular}{c|c}
-            Microsoft\textsuperscript{\textregistered} Word & \LaTeX        \\
-            \hline
-            文字处理工具                                          & 专业排版软件        \\
-            容易上手，简单直观                                       & 容易上手          \\
-            所见即所得                                           & 所见即所想，所想即所得   \\
-            高级功能不易掌握                                        & 进阶难，但一般用不到    \\
-            处理长文档需要丰富经验                                     & 和短文档处理基本无异    \\
-            花费大量时间调格式                                       & 无需担心格式，专心作者内容 \\
-            公式排版差强人意                                        & 尤其擅长公式排版      \\
-            二进制格式，兼容性差                                      & 文本文件，易读、稳定    \\
-            付费商业许可                                          & 自由免费使用        \\
+        \begin{tabular}{ll}
+            \toprule
+            文件                         & 作用              \\
+            \midrule
+            \texttt{slide.tex}         & 主文档（本文件）        \\
+            \texttt{SDU.sty}           & 主题样式：页脚、目录、常用宏包 \\
+            \texttt{SDUcolortheme.sty} & 配色定义，可整体替换      \\
+            \texttt{ref.bib}           & 参考文献条目          \\
+            \texttt{img/}              & 插图目录            \\
+            \texttt{fonts/}            & 随仓库分发的中文字体      \\
+            \bottomrule
         \end{tabular}
     \end{table}
 \end{frame}
 
-\begin{frame}{排版举例}
-    \begin{exampleblock}{无编号公式} % 加 * 
-        \begin{equation*}
-            J(\theta) = \mathbb{E}_{\pi_\theta}[G_t] = \sum_{s\in\mathcal{S}} d^\pi (s)V^\pi(s)=\sum_{s\in\mathcal{S}} d^\pi(s)\sum_{a\in\mathcal{A}}\pi_\theta(a|s)Q^\pi(s,a)
-        \end{equation*}
-    \end{exampleblock}
-\end{frame}
+\subsection{编译方式}
 
-\begin{frame}{排版举例}
-    \begin{exampleblock}{多行多列公式\footnote{如果公式中有文字出现，请用 \(\backslash\)mathrm\{\} 或者 \(\backslash\)text\{\} 包含，不然就会变成 \(clip\)，在公式里看起来比 \(\mathrm{clip}\) 丑非常多。}\footnote{另外，由于更改了长宽比，所以footnote的位置会显得非常低。有时会覆盖右下角的功能键，需要微调。}}
-        % 使用 & 分隔
-        \begin{align}
-            Q_\mathrm{target} & =r+\gamma Q^\pi(s^\prime, \pi_\theta(s^\prime)+\epsilon)  \\
-            \epsilon          & \sim\mathrm{clip}(\mathcal{N}(0, \sigma), -c, c)\nonumber
-        \end{align}
-    \end{exampleblock}
-\end{frame}
-
-\begin{frame}{编号多行公式}
-    % Taken from Mathmode.tex
-    \begin{multline}
-        A=\lim_{n\rightarrow\infty}\Delta x\left(a^{2}+\left(a^{2}+2a\Delta x+\left(\Delta x\right)^{2}\right)\right.\label{eq:reset}\\
-        +\left(a^{2}+2\cdot2a\Delta x+2^{2}\left(\Delta x\right)^{2}\right)\\
-        +\left(a^{2}+2\cdot3a\Delta x+3^{2}\left(\Delta x\right)^{2}\right)\\
-        +\ldots\\
-        \left.+\left(a^{2}+2\cdot(n-1)a\Delta x+(n-1)^{2}\left(\Delta x\right)^{2}\right)\right)\\
-        =\frac{1}{3}\left(b^{3}-a^{3}\right)
-    \end{multline}
-\end{frame}
-
-\begin{frame}{图形与分栏}
-    \begin{minipage}{0.5\textwidth}
-        \begin{figure}[htpb]
-            \centering
-            \includegraphics[width=0.7\linewidth]{img/Example/SimpleDistributedStorageArchitecture.png}
-            \caption{分布式存储系统架构示意图}
-        \end{figure}
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.4\textwidth}
-        \begin{columns}[t]
-            \begin{column}{0.5\textwidth}
-                \begin{itemize}
-                    \item 分布式存储
-                    \item 一致性哈希
-                    \item 数据分片
-                \end{itemize}
-            \end{column}
-            \begin{column}{0.5\textwidth}
-                \begin{itemize}
-                    \item 数据冗余
-                    \item 数据恢复
-                    \item 数据一致性
-                \end{itemize}
-            \end{column}
-        \end{columns}
-    \end{minipage}
-\end{frame}
-
-\begin{frame}[fragile]{\LaTeX{} 常用命令}
-    \begin{exampleblock}{命令}
-        \centering
-        \footnotesize
-        \begin{tabular}{llll}
-            \cmd{centering} & \cmd{emph} & \cmd{verb}    & \cmd{url}             \\
-            居中对齐            & 强调         & 原样输出          & 超链接                   \\ \hline
-            \cmd{footnote}  & \cmd{item} & \cmd{caption} & \cmd{includegraphics} \\
-            脚注              & 列表条目       & 标题            & 插入图片                  \\ \hline
-            \cmd{label}     & \cmd{cite} & \cmd{ref}                             \\
-            标号              & 引用参考文献     & 引用图表公式等                               \\ \hline
-        \end{tabular}
-    \end{exampleblock}
-    \begin{exampleblock}{环境}
-        \centering
-        \footnotesize
-        \begin{tabular}{lll}
-            \env{table}   & \env{figure}    & \env{equation}    \\
-            表格            & 图片              & 公式                \\\hline
-            \env{itemize} & \env{enumerate} & \env{description} \\
-            无编号列表         & 编号列表            & 描述                \\\hline
-        \end{tabular}
-    \end{exampleblock}
-\end{frame}
-
-\begin{frame}[fragile]{\LaTeX{} 环境命令举例}
-    \begin{minipage}{0.5\linewidth}
-        \begin{lstlisting}[language=TeX]
-\begin{itemize}
-  \item A
-  \item B
-  \begin{itemize}
-    \item B-1
-  \end{itemize}
-\end{itemize}
+\begin{frame}[fragile]{编译方式}
+    需要支持中文的 Xe\LaTeX{} 工具链，本地编译命令为：
+    \begin{lstlisting}[language=bash,numbers=none]
+latexmk          # 读取 .latexmkrc，自动完成全部编译步骤
 \end{lstlisting}
-    \end{minipage}\hspace{1cm}
-    \begin{minipage}{0.3\linewidth}
-        \begin{itemize}
-            \item A
-            \item B
-                  \begin{itemize}
-                      \item B-1
-                  \end{itemize}
-        \end{itemize}
-    \end{minipage}
-\end{frame}
-
-\begin{frame}[fragile]{\LaTeX{} 环境命令举例}
-    \begin{minipage}{0.5\linewidth}
-        \begin{lstlisting}[language=TeX]
-\begin{enumerate}
-  \item 巨佬
-  \item 萌新
-  \begin{itemize}
-    \item[n+e] 瑟瑟发抖
-  \end{itemize}
-\end{enumerate}
-\end{lstlisting}
-    \end{minipage}\hspace{1cm}
-    \begin{minipage}{0.3\linewidth}
-        \begin{enumerate}
-            \item 巨佬
-            \item 萌新
-                  \begin{itemize}
-                      \item[n+e] 瑟瑟发抖
-                  \end{itemize}
-        \end{enumerate}
-    \end{minipage}
-\end{frame}
-
-\begin{frame}[fragile]{\LaTeX{} 数学公式}
-    \begin{columns}
-        \begin{column}{.55\textwidth}
-            \begin{lstlisting}[language=TeX]
-$V = \frac{4}{3}\pi r^3$
-
-\[
-  V = \frac{4}{3}\pi r^3
-\]
-
-\begin{equation}
-  \label{eq:vsphere}
-  V = \frac{4}{3}\pi r^3
-\end{equation}
-\end{lstlisting}
-        \end{column}
-        \begin{column}{.4\textwidth}
-            \(V = \frac{4}{3}\pi r^3\)
-            \[
-                V = \frac{4}{3}\pi r^3
-            \]
-            \begin{equation}
-                \label{eq:vsphere}
-                V = \frac{4}{3}\pi r^3
-            \end{equation}
-        \end{column}
-    \end{columns}
+    手动等价为 \texttt{xelatex -> biber -> xelatex -> xelatex}：
     \begin{itemize}
-        \item 更多内容请看 \href{https://zh.wikipedia.org/wiki/Help:数学公式}{\color{purple}{这里}}
+        \item 使用 VS Code 可安装 \texttt{LaTeX Workshop} 插件，
+              配置 \texttt{xelatex -> biber -> xelatex} recipe
+        \item 使用 Overleaf 请将编译器切换为 XeLaTeX
+        \item 仓库自带 GitHub Actions，每次 push 自动编译并回传 PDF
     \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{表格与公式引用}
+\section{文本与列表}
+
+\subsection{列表环境}
+
+\begin{frame}{列表环境}
+    \begin{columns}[t]
+        \begin{column}{0.48\textwidth}
+            \begin{itemize}[<+-| alert@+>]
+                \item 无序列表：\texttt{itemize}
+                \item 逐项出现并标红：\texttt{[<+-| alert@+>]}
+                      \begin{itemize}
+                          \item 支持二级嵌套
+                      \end{itemize}
+                \item 也可用 \texttt{\textbackslash item<2->} 手动控制
+            \end{itemize}
+            \begin{enumerate}
+                \item 编号列表：\texttt{enumerate}
+                \item 自动生成序号
+            \end{enumerate}
+        \end{column}
+        \begin{column}{0.48\textwidth}
+            \begin{description}
+                \item[LaTeX] 专业排版系统
+                \item[Beamer] 学术幻灯片文档类
+                \item[XeLaTeX] 原生支持 Unicode 字体的引擎
+            \end{description}
+        \end{column}
+    \end{columns}
+    \vspace{1em}
+    \pause
+    本行文字在第二步出现，由 \texttt{\textbackslash pause} 控制。
+\end{frame}
+
+\subsection{块环境}
+
+\begin{frame}{块环境}
+    \begin{block}{普通块 \texttt{block}}
+        用于一般性陈述，标题与正文均可自定义。
+    \end{block}
+    \begin{alertblock}{警示块 \texttt{alertblock}}
+        用于强调注意事项或需要引起警惕的内容。
+    \end{alertblock}
+    \begin{exampleblock}{示例块 \texttt{exampleblock}}
+        用于举例、练习或代码说明。
+    \end{exampleblock}
+\end{frame}
+
+\section{数学与定理}
+
+\subsection{数学公式}
+
+\begin{frame}{数学公式}
+    行内公式如 \(e^{i\pi}+1=0\)；无编号行间公式用 \texttt{equation*}：
+    \begin{equation*}
+        J(\theta) = \mathbb{E}_{\pi_\theta}[G_t]
+        = \sum_{s\in\mathcal{S}} d^\pi(s)\sum_{a\in\mathcal{A}}
+        \pi_\theta(a|s)Q^\pi(s,a)
+    \end{equation*}
+    需要编号和交叉引用时用 \texttt{equation}：
+    \begin{equation}
+        \int_{-\infty}^{+\infty} e^{-x^2}\,\mathrm{d}x = \sqrt{\pi}
+        \label{eq:gauss}
+    \end{equation}
+    式~\eqref{eq:gauss} 可通过 \texttt{\textbackslash eqref} 引用。
+\end{frame}
+
+\begin{frame}{多行公式}
+    \begin{columns}[t]
+        \begin{column}{0.48\textwidth}
+            \texttt{align}：多行对齐，\texttt{\&} 为对齐点
+            \begin{align}
+                \nabla\cdot\mathbf{E}  & = \frac{\rho}{\varepsilon_0} \\
+                \nabla\times\mathbf{B} & = \mu_0\mathbf{J}
+                + \mu_0\varepsilon_0\frac{\partial\mathbf{E}}{\partial t}
+            \end{align}
+        \end{column}
+        \begin{column}{0.48\textwidth}
+            \texttt{multline}：单个公式跨行折行，首行靠左、末行靠右
+            \begin{multline}
+                a+b+c+d+e+f \\
+                +g+h+i+j+k \\
+                +l+m+n
+            \end{multline}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\subsection{定理环境}
+
+\begin{frame}{定理环境}
+    Beamer 预定义了 \texttt{theorem}、\texttt{definition}、
+    \texttt{lemma}、\texttt{proof} 等环境：
+    \begin{theorem}[Cauchy--Schwarz 不等式]
+        对任意向量 \(\mathbf{x},\mathbf{y}\in\mathbb{R}^n\)，有
+        \((\sum_{i=1}^{n} x_i y_i)^2 \le (\sum_{i=1}^{n} x_i^2)(\sum_{i=1}^{n} y_i^2)\)，
+        等号成立当且仅当 \(\mathbf{x}\) 与 \(\mathbf{y}\) 线性相关。
+    \end{theorem}
+    \begin{proof}
+        对任意 \(t\in\mathbb{R}\)，\(\sum_i (x_i t + y_i)^2 \ge 0\) 展开为
+        关于 \(t\) 的二次式，其判别式 \(\Delta = 4(\sum_i x_i y_i)^2 - 4\sum_i x_i^2 \sum_i y_i^2 \le 0\)，即得结论。
+    \end{proof}
+\end{frame}
+
+\section{表格与插图}
+
+\subsection{三线表}
+
+\begin{frame}{三线表}
+    表格推荐使用 \texttt{booktabs} 宏包的三线表风格：
+    \begin{table}[h]
+        \centering
+        \caption{不同引擎的中文支持对比}
+        \label{tab:engines}
+        \begin{tabular}{lcc}
+            \toprule
+            引擎        & Unicode 支持 & 系统字体 \\
+            \midrule
+            pdf\LaTeX & 需 CJKutf8  & 否    \\
+            Xe\LaTeX  & 原生         & 是    \\
+            Lua\LaTeX & 原生         & 是    \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+    如表~\ref{tab:engines} 所示，本模板采用 Xe\LaTeX{}。
+\end{frame}
+
+\subsection{插图与分栏}
+
+\begin{frame}{插图与分栏}
     \begin{columns}
-        \column{.5\textwidth}
-        \begin{lstlisting}[language=TeX, basicstyle=\tiny, xleftmargin=2em, xrightmargin=2em]
-\begin{table}[htbp]
-  \caption{编号与含义}
-  \label{tab:number}
-  \centering
-  \begin{tabular}{cc}
-    \toprule
-    编号 & 含义 \\
-    \midrule
-    1 & 4.0 \\
-    2 & 3.7 \\
-    \bottomrule
-  \end{tabular}
-\end{table}
-公式~(\ref{eq:vsphere})的编号
-与含义请参见表~\ref{tab:number}。
-\end{lstlisting}
-        \column{.4\textwidth}
-        \begin{table}[htpb]
-            \centering
-            \caption{编号与含义}
-            \label{tab:number}
-            \begin{tabular}{cc}
-                \toprule
-                编号 & 含义  \\
-                \midrule
-                1  & 4.0 \\
-                2  & 3.7 \\
-                \bottomrule
-            \end{tabular}
-        \end{table}
-        公式~(\ref{eq:vsphere})的编号与含义请参见表~\ref{tab:number}。
+        \begin{column}{0.45\textwidth}
+            \begin{figure}[htpb]
+                \centering
+                \includegraphics[width=0.8\linewidth]{img/Example/SimpleDistributedStorageArchitecture.png}
+                \caption{插图示例}
+                \label{fig:example}
+            \end{figure}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{itemize}
+                \item 分栏使用 \texttt{columns} 环境
+                \item 矢量图（pdf、eps）优先于位图（png、jpg）
+                \item \texttt{\textbackslash caption} 添加编号图题，
+                      \texttt{\textbackslash ref} 引用，见图~\ref{fig:example}
+            \end{itemize}
+        \end{column}
     \end{columns}
 \end{frame}
 
-\begin{frame}{作图}
-    \begin{itemize}
-        \item 矢量图 eps, ps, pdf
-              \begin{itemize}
-                  \item METAPOST, TikZ, pgf \(\ldots\)
-                  \item Xfig, Dia, Visio, Inkscape \(\ldots\)
-                  \item Matlab / Excel 等保存为 pdf
-              \end{itemize}
-        \item 标量图 png, jpg, tiff \(\ldots\)
-              \begin{itemize}
-                  \item 提高清晰度，避免发虚
-                  \item 应尽量避免使用
-              \end{itemize}
-    \end{itemize}
-    \begin{figure}[htpb]
-        \centering
-        \includegraphics[width=0.1\linewidth]{img/Example/SDU.eps}
-        \caption{这个校徽就是矢量图}
-    \end{figure}
+\subsection{TikZ 绘图}
+
+\begin{frame}{TikZ 绘图}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \centering
+            \begin{tikzpicture}[
+                    neuron/.style={circle, draw=peaking, thick,
+                            minimum size=6mm, inner sep=0},
+                    label/.style={font=\footnotesize, align=center}
+                ]
+                % 各层神经元 / Neurons of each layer
+                \foreach \i in {1,...,4}
+                \node[neuron, fill=peaking!10] (I\i) at (0,{1.8-\i*1.0}) {};
+                \foreach \i in {1,...,5}
+                \node[neuron, fill=peaking!30] (H1\i) at (1.8,{2.0-\i*0.8}) {};
+                \foreach \i in {1,...,5}
+                \node[neuron, fill=peaking!30] (H2\i) at (3.6,{2.0-\i*0.8}) {};
+                \foreach \i in {1,...,2}
+                \node[neuron, fill=peaking!70, text=white] (O\i) at (5.4,{1.0-\i*1.4}) {};
+                % 全连接边 / Fully connected edges
+                \foreach \i in {1,...,4}
+                \foreach \j in {1,...,5}
+                \draw[peaking!20] (I\i) -- (H1\j);
+                \foreach \i in {1,...,5}
+                \foreach \j in {1,...,5}
+                \draw[peaking!30] (H1\i) -- (H2\j);
+                \foreach \i in {1,...,5}
+                \foreach \j in {1,...,2}
+                \draw[peaking!40] (H2\i) -- (O\j);
+                % 层标签 / Layer labels
+                \node[label] at (0,2.1)   {输入层\\\(\mathbf{x}\in\mathbb{R}^4\)};
+                \node[label] at (1.8,2.1) {隐藏层 1\\\(\sigma(W_1\mathbf{x})\)};
+                \node[label] at (3.6,2.1) {隐藏层 2\\\(\sigma(W_2\mathbf{h}_1)\)};
+                \node[label] at (5.4,2.1) {输出层\\\(\hat{\mathbf{y}}\)};
+            \end{tikzpicture}
+        \end{column}
+        \begin{column}{0.45\textwidth}
+            \begin{itemize}
+                \item 主题已加载 \texttt{tikz}，可直接绘图
+                \item \texttt{\textbackslash foreach} 循环批量生成神经元与连接
+                \item 颜色引用主题色 \texttt{peaking} 及其深浅变体
+                \item 复杂图形建议单独维护 \texttt{.tikz} 文件
+            \end{itemize}
+        \end{column}
+    \end{columns}
 \end{frame}
 
-\section{计划进度}
+\section{代码与参考文献}
 
-\begin{frame}{进度安排}
+\subsection{代码高亮}
+
+\begin{frame}[fragile]{代码高亮}
+    \texttt{listings} 已在主题中配置好样式，直接插入代码：
+    \begin{columns}
+        \begin{column}{0.48\textwidth}
+            \begin{lstlisting}[language=C]
+#include <stdio.h>
+int main(void) {
+    printf("Hello, SDU!\n");
+    return 0;
+}
+\end{lstlisting}
+        \end{column}
+        \begin{column}{0.48\textwidth}
+            \begin{lstlisting}[language=Python]
+def fib(n):
+    a, b = 0, 1
+    for _ in range(n):
+        a, b = b, a + b
+    return a
+\end{lstlisting}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\subsection{参考文献}
+
+\begin{frame}{引用}
     \begin{itemize}
-        \item 一月：完成文献调研
-        \item 二月：复现并评测各种Beamer主题美观程度
-        \item 三、四月：美化THU Beamer主题
-        \item 五月：论文撰写
+        \item 条目写在 \texttt{ref.bib} 中，用
+              \texttt{\textbackslash cite\{key\}} 引用，
+              例如 \cite{texbook} 与 \cite{beamerug}
+        \item 软件与模板类资源可用 \texttt{@misc}/\texttt{@manual} 条目
+              记录仓库地址，见 \cite{thu,pku,origin,sdulogo}
+        \item 使用 \texttt{numeric-comp} 引用样式，由 \texttt{biber} 处理，
+              引用标号以主题色显示
     \end{itemize}
 \end{frame}
 
-\section{参考文献}
-
-\begin{frame}[allowframebreaks]
+\begin{frame}[allowframebreaks]{参考文献}
     \printbibliography
 \end{frame}
 
-
+% 致谢页 / Thanks page
 \begin{frame}
     \begin{center}
         {\Huge\calligra Thanks!}

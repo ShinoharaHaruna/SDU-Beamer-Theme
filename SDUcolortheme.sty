@@ -1,17 +1,36 @@
 % SDU Beamer 颜色主题 / SDU Beamer color theme
-% 主色为山大红 RGB#820010，修改此文件即可更换整套配色
-% The main color is SDU red RGB#820010; edit this file to restyle the deck
+% 主色为山大红 CMYK(26,100,100,28)，修改此文件即可更换整套配色
+% The main color is SDU red CMYK(26,100,100,28); edit this file to restyle the deck
 \mode<presentation>
 
 \RequirePackage{xcolor}
 
-% 主题色 / Main theme color
-\xdefinecolor{peaking}{rgb}{0.5,0.0,0.0}  % RGB#820010
+% 主题色：山大红官方定义 CMYK(26,100,100,28)
+% Main theme color: official SDU red CMYK(26,100,100,28)
+\xdefinecolor{peaking}{cmyk}{0.26,1.0,1.0,0.28}
 
 % 页脚、帧标题、标题页 / Footline, frame title, title page
 \setbeamercolor{footline}{bg=peaking}
+\setbeamercolor{footline wing}{bg=peaking!30!black} % 页脚两翼深色区 / darker wings of the footline
 \setbeamercolor{frametitle}{bg=peaking,fg=white}
 \setbeamercolor{title}{bg=peaking}
+
+% 顶部导航条（smoothbars）：当前节白字，其余节淡红，进度点白色
+% Top navigation bar (smoothbars): current section in white,
+% other sections dimmed, mini-frame dots in white
+\setbeamercolor{section in head/foot}{fg=white,bg=peaking}
+\setbeamercolor{section in head/foot shaded}{fg=peaking!45!white}
+\setbeamercolor{subsection in head/foot}{fg=white}
+\setbeamercolor{subsection in head/foot shaded}{fg=peaking!45!white}
+\setbeamercolor{mini frame}{fg=white,bg=peaking}
+
+% 页脚三段文字统一为白字，保证在深红底上的可读性
+% White text for all footline parts, readable on the dark red bands
+\setbeamercolor{author in head/foot}{fg=white}
+\setbeamercolor{institute in head/foot}{fg=white}
+\setbeamercolor{title in head/foot}{fg=white,bg=peaking!60!black}
+\setbeamercolor{date in head/foot}{fg=white}
+\setbeamercolor{frame number}{fg=white}
 
 % 调色板 / Palettes
 \setbeamercolor{palette primary}{use=structure,fg=white,bg=structure.fg}

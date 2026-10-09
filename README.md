@@ -24,6 +24,25 @@ SDU 的 Beamer 主题，用于学术报告、论文和演讲。
 
 ---
 
+### 编译
+
+推荐直接使用 `latexmk`，仓库已附带 `.latexmkrc`（指定 XeLaTeX、SyncTeX 与主文档），它会自动调用 `biber` 并重复编译直至收敛：
+
+```bash
+latexmk
+```
+
+手动等价的编译链如下（本项目按 `biber` 配置参考文献，不推荐使用 `bibtex`）：
+
+```bash
+xelatex slide.tex
+biber slide
+xelatex slide.tex
+xelatex slide.tex
+```
+
+第一遍 `xelatex` 生成 `.bcf`，`biber` 据此生成 `.bbl`；后两遍 `xelatex` 依次插入参考文献并收敛目录、交叉引用与页码。
+
 对于 Visual Studio Code 用户，如果不想安装 `TeXstudio`，可以安装插件 `LaTeX Workshop`，在 VS Code 中直接编写 LaTeX。
 
 在 `Settings.json` 中找到并修改以下配置：
@@ -51,10 +70,11 @@ SDU 的 Beamer 主题，用于学术报告、论文和演讲。
 
 "latex-workshop.latex.recipes": [
     {
-        "name": "xelatex -> biber -> xelatex",
+        "name": "xelatex -> biber -> xelatex * 2",
         "tools": [
             "xelatex",
             "biber",
+            "xelatex",
             "xelatex",
         ]
     },
