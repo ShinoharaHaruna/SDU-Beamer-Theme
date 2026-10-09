@@ -17,7 +17,7 @@ jobs:
         uses: awalsh128/cache-apt-pkgs-action@latest
         with:
           packages: >-
-            latexmk texlive-latex-base texlive-xetex texlive-extra-utils
+            texlive-latex-base texlive-xetex texlive-extra-utils
             texlive-fonts-recommended texlive-fonts-extra lmodern
             texlive-latex-extra biber fontconfig latex-cjk-all
             texlive-pstricks texlive-bibtex-extra texlive-science
@@ -25,6 +25,10 @@ jobs:
       - name: Reconfigure tex-common
         run: |
           sudo dpkg --configure -a
+
+      - name: Install latexmk
+        run: |
+          sudo apt-get install -y latexmk
 
       - name: Install Custom Fonts
         run: |
