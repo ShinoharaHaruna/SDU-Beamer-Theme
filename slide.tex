@@ -67,7 +67,7 @@
         \item 中文支持请选择 Xe\LaTeX{} 编译选项
         \item 这份模板是基于\cite{origin}的\LaTeX{}模板修改而来
         \item Overleaf项目链接：\\
-        \tiny\url{https://www.overleaf.com/latex/templates/sdu-beamer-theme/vfnkydnwgrvc}
+              \tiny\url{https://www.overleaf.com/latex/templates/sdu-beamer-theme/vfnkydnwgrvc}
         \item 此外，使用的校徽矢量图来自于\\\url{https://github.com/jshmsjh/SDU-Beamer-Theme}
     \end{itemize}
 \end{frame}
@@ -82,14 +82,14 @@
         \item 有一些Tsinghua的
         \item 本模板来源自 \newline \url{https://www.latexstudio.net/archives/4051.html}
         \item 但是最初的 \href{http://far.tooold.cn/post/latex/beamertsinghua}{\color{purple}{link}} \cite{origin}已经失效了
-        \newline
+              \newline
         \item 基于 SDU-Beamer-Theme，作出的修改有：
-            \begin{itemize}
-                \item \sout{都什么年代，还在用传统长宽比？}默认使用16:9的长宽比
-                \item 用GitHub托管项目，欢迎issue/fork/star
-                \item 补充一些常用的包，弃用了一些包而转向其他选项
-                \item 大规模重构项目结构，补充完善的中英文注释
-            \end{itemize}
+              \begin{itemize}
+                  \item \sout{都什么年代，还在用传统长宽比？}默认使用16:9的长宽比
+                  \item 用GitHub托管项目，欢迎issue/fork/star
+                  \item 补充一些常用的包，弃用了一些包而转向其他选项
+                  \item 大规模重构项目结构，补充完善的中英文注释
+              \end{itemize}
     \end{itemize}
 \end{frame}
 
@@ -116,17 +116,17 @@
     \begin{table}[h]
         \centering
         \begin{tabular}{c|c}
-            Microsoft\textsuperscript{\textregistered} Word & \LaTeX \\
+            Microsoft\textsuperscript{\textregistered} Word & \LaTeX        \\
             \hline
-            文字处理工具 & 专业排版软件 \\
-            容易上手，简单直观 & 容易上手 \\
-            所见即所得 & 所见即所想，所想即所得 \\
-            高级功能不易掌握 & 进阶难，但一般用不到 \\
-            处理长文档需要丰富经验 & 和短文档处理基本无异 \\
-            花费大量时间调格式 & 无需担心格式，专心作者内容 \\
-            公式排版差强人意 & 尤其擅长公式排版 \\
-            二进制格式，兼容性差 & 文本文件，易读、稳定 \\
-            付费商业许可 & 自由免费使用 \\
+            文字处理工具                                          & 专业排版软件        \\
+            容易上手，简单直观                                       & 容易上手          \\
+            所见即所得                                           & 所见即所想，所想即所得   \\
+            高级功能不易掌握                                        & 进阶难，但一般用不到    \\
+            处理长文档需要丰富经验                                     & 和短文档处理基本无异    \\
+            花费大量时间调格式                                       & 无需担心格式，专心作者内容 \\
+            公式排版差强人意                                        & 尤其擅长公式排版      \\
+            二进制格式，兼容性差                                      & 文本文件，易读、稳定    \\
+            付费商业许可                                          & 自由免费使用        \\
         \end{tabular}
     \end{table}
 \end{frame}
@@ -140,11 +140,11 @@
 \end{frame}
 
 \begin{frame}{排版举例}
-    \begin{exampleblock}{多行多列公式\footnote{如果公式中有文字出现，请用 $\backslash$mathrm\{\} 或者 $\backslash$text\{\} 包含，不然就会变成 $clip$，在公式里看起来比 $\mathrm{clip}$ 丑非常多。}\footnote{另外，由于更改了长宽比，所以footnote的位置会显得非常低。有时会覆盖右下角的功能键，需要微调。}}
+    \begin{exampleblock}{多行多列公式\footnote{如果公式中有文字出现，请用 \(\backslash\)mathrm\{\} 或者 \(\backslash\)text\{\} 包含，不然就会变成 \(clip\)，在公式里看起来比 \(\mathrm{clip}\) 丑非常多。}\footnote{另外，由于更改了长宽比，所以footnote的位置会显得非常低。有时会覆盖右下角的功能键，需要微调。}}
         % 使用 & 分隔
         \begin{align}
-            Q_\mathrm{target}&=r+\gamma Q^\pi(s^\prime, \pi_\theta(s^\prime)+\epsilon)\\
-            \epsilon&\sim\mathrm{clip}(\mathcal{N}(0, \sigma), -c, c)\nonumber
+            Q_\mathrm{target} & =r+\gamma Q^\pi(s^\prime, \pi_\theta(s^\prime)+\epsilon)  \\
+            \epsilon          & \sim\mathrm{clip}(\mathcal{N}(0, \sigma), -c, c)\nonumber
         \end{align}
     \end{exampleblock}
 \end{frame}
@@ -195,29 +195,29 @@
         \centering
         \footnotesize
         \begin{tabular}{llll}
-            \cmd{centering} & \cmd{emph} & \cmd{verb} & \cmd{url} \\
-            居中对齐 & 强调 & 原样输出 & 超链接 \\ \hline
-            \cmd{footnote} & \cmd{item} & \cmd{caption} & \cmd{includegraphics} \\
-            脚注 & 列表条目 & 标题 & 插入图片 \\ \hline
-            \cmd{label} & \cmd{cite} & \cmd{ref} \\
-            标号 & 引用参考文献 & 引用图表公式等\\ \hline
+            \cmd{centering} & \cmd{emph} & \cmd{verb}    & \cmd{url}             \\
+            居中对齐            & 强调         & 原样输出          & 超链接                   \\ \hline
+            \cmd{footnote}  & \cmd{item} & \cmd{caption} & \cmd{includegraphics} \\
+            脚注              & 列表条目       & 标题            & 插入图片                  \\ \hline
+            \cmd{label}     & \cmd{cite} & \cmd{ref}                             \\
+            标号              & 引用参考文献     & 引用图表公式等                               \\ \hline
         \end{tabular}
     \end{exampleblock}
     \begin{exampleblock}{环境}
         \centering
         \footnotesize
         \begin{tabular}{lll}
-            \env{table} & \env{figure} & \env{equation}\\
-            表格 & 图片 & 公式 \\\hline
-            \env{itemize} & \env{enumerate} & \env{description}\\
-            无编号列表 & 编号列表 & 描述 \\\hline
+            \env{table}   & \env{figure}    & \env{equation}    \\
+            表格            & 图片              & 公式                \\\hline
+            \env{itemize} & \env{enumerate} & \env{description} \\
+            无编号列表         & 编号列表            & 描述                \\\hline
         \end{tabular}
     \end{exampleblock}
 \end{frame}
 
 \begin{frame}[fragile]{\LaTeX{} 环境命令举例}
     \begin{minipage}{0.5\linewidth}
-\begin{lstlisting}[language=TeX]
+        \begin{lstlisting}[language=TeX]
 \begin{itemize}
   \item A
   \item B
@@ -231,16 +231,16 @@
         \begin{itemize}
             \item A
             \item B
-            \begin{itemize}
-                \item B-1
-            \end{itemize}
+                  \begin{itemize}
+                      \item B-1
+                  \end{itemize}
         \end{itemize}
     \end{minipage}
 \end{frame}
 
 \begin{frame}[fragile]{\LaTeX{} 环境命令举例}
     \begin{minipage}{0.5\linewidth}
-\begin{lstlisting}[language=TeX]
+        \begin{lstlisting}[language=TeX]
 \begin{enumerate}
   \item 巨佬
   \item 萌新
@@ -254,9 +254,9 @@
         \begin{enumerate}
             \item 巨佬
             \item 萌新
-            \begin{itemize}
-                \item[n+e] 瑟瑟发抖
-            \end{itemize}
+                  \begin{itemize}
+                      \item[n+e] 瑟瑟发抖
+                  \end{itemize}
         \end{enumerate}
     \end{minipage}
 \end{frame}
@@ -264,12 +264,12 @@
 \begin{frame}[fragile]{\LaTeX{} 数学公式}
     \begin{columns}
         \begin{column}{.55\textwidth}
-\begin{lstlisting}[language=TeX]
+            \begin{lstlisting}[language=TeX]
 $V = \frac{4}{3}\pi r^3$
 
-$$
+\[
   V = \frac{4}{3}\pi r^3
-$$
+\]
 
 \begin{equation}
   \label{eq:vsphere}
@@ -278,10 +278,10 @@ $$
 \end{lstlisting}
         \end{column}
         \begin{column}{.4\textwidth}
-            $V = \frac{4}{3}\pi r^3$
-            $$
+            \(V = \frac{4}{3}\pi r^3\)
+            \[
                 V = \frac{4}{3}\pi r^3
-            $$
+            \]
             \begin{equation}
                 \label{eq:vsphere}
                 V = \frac{4}{3}\pi r^3
@@ -296,7 +296,7 @@ $$
 \begin{frame}[fragile]{表格与公式引用}
     \begin{columns}
         \column{.5\textwidth}
-\begin{lstlisting}[language=TeX, basicstyle=\tiny, xleftmargin=2em, xrightmargin=2em]
+        \begin{lstlisting}[language=TeX, basicstyle=\tiny, xleftmargin=2em, xrightmargin=2em]
 \begin{table}[htbp]
   \caption{编号与含义}
   \label{tab:number}
@@ -320,10 +320,10 @@ $$
             \label{tab:number}
             \begin{tabular}{cc}
                 \toprule
-                编号 & 含义 \\
+                编号 & 含义  \\
                 \midrule
-                1 & 4.0 \\
-                2 & 3.7 \\
+                1  & 4.0 \\
+                2  & 3.7 \\
                 \bottomrule
             \end{tabular}
         \end{table}
@@ -334,16 +334,16 @@ $$
 \begin{frame}{作图}
     \begin{itemize}
         \item 矢量图 eps, ps, pdf
-        \begin{itemize}
-            \item METAPOST, pstricks, pgf $\ldots$
-            \item Xfig, Dia, Visio, Inkscape $\ldots$
-            \item Matlab / Excel 等保存为 pdf
-        \end{itemize}
-        \item 标量图 png, jpg, tiff $\ldots$
-        \begin{itemize}
-            \item 提高清晰度，避免发虚
-            \item 应尽量避免使用
-        \end{itemize}
+              \begin{itemize}
+                  \item METAPOST, TikZ, pgf \(\ldots\)
+                  \item Xfig, Dia, Visio, Inkscape \(\ldots\)
+                  \item Matlab / Excel 等保存为 pdf
+              \end{itemize}
+        \item 标量图 png, jpg, tiff \(\ldots\)
+              \begin{itemize}
+                  \item 提高清晰度，避免发虚
+                  \item 应尽量避免使用
+              \end{itemize}
     \end{itemize}
     \begin{figure}[htpb]
         \centering
