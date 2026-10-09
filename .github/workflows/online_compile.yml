@@ -17,7 +17,7 @@ jobs:
         uses: awalsh128/cache-apt-pkgs-action@latest
         with:
           packages: >-
-            latexmk texlive-latex-base texlive-xetex texlive-extra-utils
+            texlive-latex-base texlive-xetex texlive-extra-utils
             texlive-fonts-recommended texlive-fonts-extra
             texlive-latex-extra biber fontconfig latex-cjk-all
             texlive-pstricks
@@ -48,7 +48,9 @@ jobs:
 
       - name: Clean Auxiliary Files
         run: |
-          latexmk -C slide.tex || true
+          rm -f slide.aux slide.bbl slide.bcf slide.blg slide.log \
+            slide.nav slide.out slide.run.xml slide.snm \
+            slide.synctex.gz slide.toc slide.vrb
 
       - name: Compile LaTeX document
         run: |
@@ -57,8 +59,12 @@ jobs:
             echo "Error: slide.tex not found."
             exit 1
           fi
-          # latexmk 自动按需调用 biber 并重复编译直至收敛
-          latexmk -xelatex -synctex=1 -interaction=nonstopmode slide.tex
+          # 三遍 xelatex：第一遍生成 .bcf，biber 生成 .bbl，
+          # 后两遍收敛目录和交叉引用
+          xelatex -synctex=1 -interaction=nonstopmode slide.tex
+          biber slide
+          xelatex -synctex=1 -interaction=nonstopmode slide.tex
+          xelatex -synctex=1 -interaction=nonstopmode slide.tex
 
       - name: Upload PDF as artifact
         uses: actions/upload-artifact@v4
