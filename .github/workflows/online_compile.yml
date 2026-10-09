@@ -28,6 +28,7 @@ jobs:
 
       - name: Install latexmk
         run: |
+          sudo apt-get update
           sudo apt-get install -y latexmk
 
       - name: Install Custom Fonts
