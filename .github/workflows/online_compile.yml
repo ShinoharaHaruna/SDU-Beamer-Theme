@@ -18,9 +18,9 @@ jobs:
         with:
           packages: >-
             texlive-latex-base texlive-xetex texlive-extra-utils
-            texlive-fonts-recommended texlive-fonts-extra
+            texlive-fonts-recommended texlive-fonts-extra lmodern
             texlive-latex-extra biber fontconfig latex-cjk-all
-            texlive-pstricks
+            texlive-pstricks texlive-bibtex-extra texlive-science
 
       - name: Reconfigure tex-common
         run: |
