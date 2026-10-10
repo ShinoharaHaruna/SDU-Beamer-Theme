@@ -1,4 +1,9 @@
 % !TeX program = lualatex
+%
+% dev 分支 / dev branch: 现代化重设计, 吸收 Moloch 与 Jacquenetta 的
+% 设计语言, 与 main 分支的经典版主题属于不同谱系.
+% Modernized redesign on dev: design language absorbed from Moloch and
+% Jacquenetta; a different lineage from the classic theme on main.
 \documentclass[aspectratio=169]{beamer}
 
 % 如果在 Overleaf 上编译，注意切换到 LuaLaTeX 作为编译器
@@ -78,6 +83,8 @@
     本模板是面向山东大学的 \LaTeX{} Beamer 主题，适用于学术汇报、
     开题与答辩等场合，主要特性包括：
     \begin{itemize}
+        \item 现代重设计：吸收 Moloch 与 Jacquenetta 的设计语言，
+              与 \texttt{main} 分支的经典版为不同谱系
         \item 默认 \(16:9\) 宽屏长宽比，白底，山大红（CMYK 26/100/100/28）作强调色
         \item 无导航条，页脚为细进度条 + 页码；\texttt{[border]} 选项可加页面黑框
         \item 使用 Lua\LaTeX{} 编译，通过 \texttt{luatexja} 支持中文排版
@@ -101,6 +108,8 @@
         \item \textbf{本仓库}：在 SDU 主题基础上重构：默认 \(16:9\) 长宽比、
               配色抽离为 \texttt{beamercolorthemeSDU.sty}、
               补充中英文注释、接入 GitHub Actions 自动编译
+        \item \textbf{本页所示（\texttt{dev} 分支）}：吸收 Moloch 与 Jacquenetta
+              设计语言、迁移至 Lua\LaTeX{} 的现代版，已与经典版分为不同谱系
     \end{itemize}
     校徽矢量图来自 \cite{sdulogo}。
 \end{frame}
