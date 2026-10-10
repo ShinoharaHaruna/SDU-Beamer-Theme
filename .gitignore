@@ -14,3 +14,4 @@
 *.fdb_latexmk
 *.fls
 *.xdv
+*-eps-converted-to.pdf
