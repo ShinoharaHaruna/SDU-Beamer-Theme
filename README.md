@@ -39,7 +39,7 @@ SDU 的 Beamer 主题，用于学术报告、论文和演讲。
 
 ### 编译
 
-推荐直接使用 `latexmk`，仓库已附带 `.latexmkrc`（指定 XeLaTeX、SyncTeX 与主文档），它会自动调用 `biber` 并重复编译直至收敛：
+推荐直接使用 `latexmk`，仓库已附带 `.latexmkrc`（指定 LuaLaTeX、SyncTeX 与主文档），它会自动调用 `biber` 并重复编译直至收敛：
 
 ```bash
 latexmk
@@ -48,13 +48,13 @@ latexmk
 手动等价的编译链如下（本项目按 `biber` 配置参考文献，不推荐使用 `bibtex`）：
 
 ```bash
-xelatex slide.tex
+lualatex slide.tex
 biber slide
-xelatex slide.tex
-xelatex slide.tex
+lualatex slide.tex
+lualatex slide.tex
 ```
 
-第一遍 `xelatex` 生成 `.bcf`，`biber` 据此生成 `.bbl`；后两遍 `xelatex` 依次插入参考文献并收敛目录、交叉引用与页码。
+第一遍 `lualatex` 生成 `.bcf`，`biber` 据此生成 `.bbl`；后两遍 `lualatex` 依次插入参考文献并收敛目录、交叉引用与页码。
 
 对于 Visual Studio Code 用户，如果不想安装 `TeXstudio`，可以安装插件 `LaTeX Workshop`，在 VS Code 中直接编写 LaTeX。
 
@@ -70,8 +70,8 @@ xelatex slide.tex
         ]
     },
     {
-        "name": "xelatex",
-        "command": "xelatex",
+        "name": "lualatex",
+        "command": "lualatex",
         "args": [
             "-synctex=1",
             "-interaction=nonstopmode",
@@ -83,12 +83,12 @@ xelatex slide.tex
 
 "latex-workshop.latex.recipes": [
     {
-        "name": "xelatex -> biber -> xelatex * 2",
+        "name": "lualatex -> biber -> lualatex * 2",
         "tools": [
-            "xelatex",
+            "lualatex",
             "biber",
-            "xelatex",
-            "xelatex",
+            "lualatex",
+            "lualatex",
         ]
     },
     ……
@@ -103,22 +103,25 @@ xelatex slide.tex
 > 2. Arial 字体，使用 GitHub Actions 编译意味着用户接受 Microsoft 的 EULA，以使用 Arial 字体。本项目不持有相关任何版权。
 > 3. Sarasa Mono SC 字体。仓库地址：<https://github.com/be5invis/Sarasa-Gothic>；本项目不持有相关任何版权。
 
-在 `slide.tex` 的开头，有以下配置：
+在 `slide.tex` 的开头，有以下配置（dev 分支使用 `luatexja-fontspec` 代替 `xeCJK`，宏名为 `\setmainjfont` 系列）：
 
 ```latex
 % 字体设置 / Font settings
 \usepackage{fontspec} % 字体选择 / Font selection
-\usepackage{xeCJK} % 中文字体支持 / Chinese font support
+\usepackage{luatexja-fontspec} % 中文字体支持, LuaLaTeX 版
 
 % 设置中文字体 / Set Chinese fonts
-\setCJKsansfont[AutoFakeBold]{LXGW WenKai}
-\setCJKmainfont{LXGW WenKai}
-\setCJKmonofont{Sarasa Mono SC}
+\setmainjfont{Noto Sans CJK SC}
+\setsansjfont{Noto Sans CJK SC}
+\setmonojfont{Noto Sans Mono CJK SC}
 
 % 设置英文字体 / Set English fonts
-\setmainfont{Times New Roman} % 主字体 / Main font
-\setsansfont{Arial} % 无衬线字体 / Sans-serif font
+\setsansfont{Fira Sans} % 正文默认无衬线
+\setmainfont{Fira Sans} % 主字体 / Main font
+\setmonofont{Fira Mono} % 等宽字体 / Monospace font
 ```
+
+`fonts/` 目录下的落霞孤鹜、Arial、更纱字体供 `main` 分支的经典版主题使用；dev 分支默认使用系统安装的 Fira Sans 与 Noto Sans CJK。
 
 通常需要根据自己的需求修改这些配置。如果使用 Linux，可以通过 `fc-list` 命令查看系统中已安装的字体，或者 `fc-list :lang=zh` 寻找中文字体。
 
@@ -131,7 +134,7 @@ xelatex slide.tex
 
 完整版 `slide.tex` 超出 Overleaf 免费计划的编译时限，主要表现为编译时间过长被系统限制。实测结论：免费版的主要瓶颈是 `biblatex/biber` 与 CJK 字体缓存这类一次性开销，而非文档本身复杂度；超时后多按几次 Recompile 有机会通过，因为字体缓存会保留在项目内。
 
-仓库附带 `pack_overleaf.sh`，可生成适配免费版的精简包，已验证可编译的组合：
+仓库附带 `pack_overleaf.sh`，可生成适配免费版的精简包（针对 `main` 分支的经典版主题），已验证可编译的组合：
 
 ```bash
 ./pack_overleaf.sh --no-bib              # XeLaTeX 精简包, Fandol 字体, 推荐
@@ -140,7 +143,7 @@ xelatex slide.tex
 
 pdfLaTeX 变体的限制：中文仅限正文，标题/章节名/作者信息需用英文，且只有单一宋体字重。
 
-完整体验（参考文献、代码高亮、TikZ 示例、落霞孤鹜/更纱字体）**推荐使用仓库自带的 GitHub Actions 自动构建 PDF**，或直接本地 `latexmk` 构建。Overleaf 免费版下本模板功能受限：仅限精简示例、无参考文献、字体缩减为 Fandol/gbsn。`pack_overleaf.sh --help` 查看全部选项与免费版可用性说明。
+完整体验（参考文献、代码高亮、TikZ 示例、自定义字体）**推荐使用仓库自带的 GitHub Actions 自动构建 PDF**，或直接本地 `latexmk` 构建。Overleaf 免费版下本模板功能受限：仅限精简示例、无参考文献、字体缩减为 Fandol/gbsn。`pack_overleaf.sh --help` 查看全部选项与免费版可用性说明。
 
 ## 感谢
 
