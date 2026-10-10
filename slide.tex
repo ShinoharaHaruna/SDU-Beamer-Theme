@@ -16,16 +16,14 @@
 \usepackage{luatexja-fontspec} % 中文字体支持, LuaLaTeX 版 / Chinese font support for LuaLaTeX
 
 % 设置中文字体 / Set Chinese fonts (luatexja-fontspec 宏名)
-% Medium 作为正文, Bold 作粗体; Regular 在投影上偏细
-\setmainjfont[BoldFont={Noto Sans CJK SC Bold}]{Noto Sans CJK SC Medium}
-\setsansjfont[BoldFont={Noto Sans CJK SC Bold}]{Noto Sans CJK SC Medium}
+\setmainjfont{Noto Sans CJK SC}
+\setsansjfont{Noto Sans CJK SC}
 \setmonojfont{Noto Sans Mono CJK SC}
 
 % 设置英文字体 / Set English fonts
 \setsansfont{Fira Sans} % 正文默认无衬线 / Beamer body text is sans by default
 \setmainfont{Fira Sans} % 主字体 / Main font
 \setmonofont{Fira Mono} % 等宽字体 / Monospace font
-\usepackage{firamath-otf} % 数学字体: Fira Math, 与 Fira Sans 同源
 
 % Overleaf 方案（无须自定义字体）/ Overleaf solution (no need to customize fonts)
 % \setsansjfont{FandolHei}[
