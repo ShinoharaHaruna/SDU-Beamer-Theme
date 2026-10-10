@@ -97,11 +97,7 @@ Find and modify the following configurations in `Settings.json`:
 
 ### Fonts
 
-> Update 2025/03/03: Added to the fonts directory.
->
-> 1. LXGW font. This project does not hold any copyright. Used according to <https://github.com/lxgw/LxgwWenKai#%E8%AE%B8%E5%8F%AF>
-> 2. Arial font. Compiling with GitHub Actions implies acceptance of Microsoft's EULA for the use of Arial font. This project does not hold any copyright.
-> 3. Sarasa Mono SC font. Repository address: <https://github.com/be5invis/Sarasa-Gothic>; this project does not hold any copyright.
+The dev branch ships no fonts; everything uses system fonts: **Fira Sans / Fira Mono** for Latin, **Noto Sans CJK SC / Noto Sans Mono CJK SC** for Chinese, and default Computer Modern for math. Install them via your package manager or Google Fonts / Adobe Fonts.
 
 At the beginning of `slide.tex`, there are the following configurations (the dev branch uses `luatexja-fontspec` instead of `xeCJK`, with the `\setmainjfont` family of macros):
 
@@ -121,7 +117,7 @@ At the beginning of `slide.tex`, there are the following configurations (the dev
 \setmonofont{Fira Mono} % 等宽字体 / Monospace font
 ```
 
-The bundled LXGW WenKai, Arial and Sarasa fonts in `fonts/` are used by the classic theme on `main`; the dev branch uses system-installed Fira Sans and Noto Sans CJK.
+The bundled LXGW WenKai, Arial and Sarasa fonts in `fonts/` are used by the classic theme on `main`.
 
 You usually need to modify these settings according to your needs. If using Linux, you can view the installed fonts on your system with the `fc-list` command, or `fc-list :lang=zh` to find Chinese fonts.
 
@@ -130,27 +126,10 @@ You usually need to modify these settings according to your needs. If using Linu
 - Create LaTeX tables online: <https://www.tablesgenerator.com/>
 - LaTeX/Floats, Figures and Captions: <https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions#Tip>
 
-## Overleaf Template
-
-The full `slide.tex` exceeds Overleaf's free-plan compile time limit. Testing shows the main bottleneck is one-time costs — BibLaTeX/Biber and CJK font caches — rather than document complexity; if a compile times out, pressing Recompile a few times may succeed since font caches persist in the project.
-
-The repository ships `pack_overleaf.sh`, which produces trimmed packages verified to compile on the free plan (these package the classic theme on `main`):
-
-```bash
-./pack_overleaf.sh --no-bib              # XeLaTeX minimal pack, Fandol fonts, recommended
-./pack_overleaf.sh --pdflatex --no-bib   # pdfLaTeX minimal pack, CJKutf8+gbsn, fallback
-```
-
-Limitations of the pdfLaTeX variant: Chinese is allowed only inside frame bodies (the title, section names and author info must be English), and only a single Song font weight is available.
-
-For the full experience (bibliography, code highlighting, TikZ examples, custom fonts), **the recommended route is the GitHub Actions workflow included in this repository**, which builds the PDF automatically; a local `latexmk` build works too. On Overleaf's free plan this template is feature-limited: minimal example only, no bibliography, and fonts reduced to Fandol/gbsn. Run `pack_overleaf.sh --help` for all options and free-plan compatibility notes.
-
 ## Credit
 
-- The original work of *Ura*, yet more information is missing. Check Ura's template on *overleaf*: <https://www.overleaf.com/latex/templates/sdu-beamer-theme/vfnkydnwgrvc>
 - The `eps` file of the university's logo is from <https://github.com/jshmsjh/SDU-Beamer-Theme>.
-- The work is based on [PKU-Beamer-Theme](https://github.com/inFaaa/PKU-Beamer-Theme).
-- [PKU-Beamer-Theme](https://github.com/inFaaa/PKU-Beamer-Theme) is based on [THU-Beamer-Theme](https://github.com/tuna/THU-Beamer-Theme). Thanks to them all.
+- Design language informed by [Moloch](https://github.com/jolars/moloch) and [Jacquenetta](https://github.com/smanchajm/Jacquenetta-beamer-theme).
 
 ## License
 

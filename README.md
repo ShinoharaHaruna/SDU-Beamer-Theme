@@ -97,11 +97,7 @@ lualatex slide.tex
 
 ### 字体
 
-> Update 2025/03/03: 在 fonts 目录下添加了
->
-> 1. 落霞孤鹜字体。本项目不持有任何相关版权，依据 <https://github.com/lxgw/LxgwWenKai#%E8%AE%B8%E5%8F%AF> 使用
-> 2. Arial 字体，使用 GitHub Actions 编译意味着用户接受 Microsoft 的 EULA，以使用 Arial 字体。本项目不持有相关任何版权。
-> 3. Sarasa Mono SC 字体。仓库地址：<https://github.com/be5invis/Sarasa-Gothic>；本项目不持有相关任何版权。
+dev 分支不随仓库分发字体，全部使用系统字体：拉丁文 **Fira Sans / Fira Mono**，中文 **Noto Sans CJK SC / Noto Sans Mono CJK SC**，数学保持默认 Computer Modern。请通过系统包管理器或 Google Fonts / Adobe Fonts 安装。
 
 在 `slide.tex` 的开头，有以下配置（dev 分支使用 `luatexja-fontspec` 代替 `xeCJK`，宏名为 `\setmainjfont` 系列）：
 
@@ -121,7 +117,7 @@ lualatex slide.tex
 \setmonofont{Fira Mono} % 等宽字体 / Monospace font
 ```
 
-`fonts/` 目录下的落霞孤鹜、Arial、更纱字体供 `main` 分支的经典版主题使用；dev 分支默认使用系统安装的 Fira Sans 与 Noto Sans CJK。
+`fonts/` 目录下的落霞孤鹜、Arial、更纱字体供 `main` 分支的经典版主题使用。
 
 通常需要根据自己的需求修改这些配置。如果使用 Linux，可以通过 `fc-list` 命令查看系统中已安装的字体，或者 `fc-list :lang=zh` 寻找中文字体。
 
@@ -130,27 +126,10 @@ lualatex slide.tex
 - 在线创建 LaTeX 表格：<https://www.tablesgenerator.com/>
 - LaTeX 画图画表常用命令：<https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions#Tip>
 
-## Overleaf 模板
-
-完整版 `slide.tex` 超出 Overleaf 免费计划的编译时限，主要表现为编译时间过长被系统限制。实测结论：免费版的主要瓶颈是 `biblatex/biber` 与 CJK 字体缓存这类一次性开销，而非文档本身复杂度；超时后多按几次 Recompile 有机会通过，因为字体缓存会保留在项目内。
-
-仓库附带 `pack_overleaf.sh`，可生成适配免费版的精简包（针对 `main` 分支的经典版主题），已验证可编译的组合：
-
-```bash
-./pack_overleaf.sh --no-bib              # XeLaTeX 精简包, Fandol 字体, 推荐
-./pack_overleaf.sh --pdflatex --no-bib   # pdfLaTeX 精简包, CJKutf8+gbsn, 备用
-```
-
-pdfLaTeX 变体的限制：中文仅限正文，标题/章节名/作者信息需用英文，且只有单一宋体字重。
-
-完整体验（参考文献、代码高亮、TikZ 示例、自定义字体）**推荐使用仓库自带的 GitHub Actions 自动构建 PDF**，或直接本地 `latexmk` 构建。Overleaf 免费版下本模板功能受限：仅限精简示例、无参考文献、字体缩减为 Fandol/gbsn。`pack_overleaf.sh --help` 查看全部选项与免费版可用性说明。
-
 ## 感谢
 
-- SDU-Beamer-Theme 的原作者是 *Ura*，然而缺少更多相关信息。在 *overleaf* 上查看原项目: <https://www.overleaf.com/latex/templates/sdu-beamer-theme/vfnkydnwgrvc>
 - 山大的 `eps` 矢量图校徽来自于：<https://github.com/jshmsjh/SDU-Beamer-Theme>
-- 本作品基于 [PKU-Beamer-Theme](https://github.com/inFaaa/PKU-Beamer-Theme)。
-- [PKU-Beamer-Theme](https://github.com/inFaaa/PKU-Beamer-Theme) 基于 [THU-Beamer-Theme](https://github.com/tuna/THU-Beamer-Theme)。对上述所有项目表示感谢。
+- 设计语言参考 [Moloch](https://github.com/jolars/moloch) 与 [Jacquenetta](https://github.com/smanchajm/Jacquenetta-beamer-theme)。
 
 ## 协议
 
