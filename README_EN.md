@@ -1,5 +1,12 @@
 # SDU-Beamer-Theme
 
+> **dev branch**: modernization in progress. This branch targets cutting-edge practice and runs in parallel with the classic, stable track on `main`.
+> Roadmap:
+> 1. Migrate the compile engine from XeLaTeX to LuaLaTeX (`luatexja-fontspec` replaces `xeCJK`)
+> 2. Modernize the design language following the Moloch/Metropolis lineage — no navigation bars, sans-serif type, generous whitespace, single accent color — while keeping the SDU red and university emblem
+>
+> For the stable version, switch to the `main` branch.
+
 A Beamer theme of SDU for academic report, thesis and talk.
 
 Please feel free to submit issues or pull request and give a star⭐️ if the repository helps.

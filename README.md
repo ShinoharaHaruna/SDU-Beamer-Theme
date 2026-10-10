@@ -1,5 +1,12 @@
 # SDU-Beamer-Theme
 
+> **dev 分支**：现代化改造进行中。本分支追求前沿、先进与最佳实践，与 main 分支的「经典稳定版」定位并行。
+> 路线图：
+> 1. 编译引擎从 XeLaTeX 迁移至 LuaLaTeX（`luatexja-fontspec` 替代 `xeCJK`）
+> 2. 主题与审美现代化：参考 Moloch/Metropolis 设计谱系——无导航条、无衬线字体、大留白、单色 accent，保留山大红与校徽的机构标识
+>
+> 需要稳定版本请切换到 `main` 分支。
+
 SDU 的 Beamer 主题，用于学术报告、论文和演讲。
 
 请随时提交问题或提交 PR。如果该项目有帮助，欢迎 Star⭐️。
