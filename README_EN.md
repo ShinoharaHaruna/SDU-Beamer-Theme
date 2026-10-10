@@ -6,6 +6,11 @@
 [![Release](https://img.shields.io/github/v/release/ShinoharaHaruna/SDU-Beamer-Theme)](https://github.com/ShinoharaHaruna/SDU-Beamer-Theme/releases)
 ![Engine](https://img.shields.io/badge/engine-XeLaTeX-blue)
 
+> **Try the `dev` branch**: a modernized redesign — LuaLaTeX engine and the
+> Moloch/Jacquenetta design language (white background, no navigation bars, thin
+> progress bar, unified left-bar callouts, dark section pages), keeping the SDU
+> red and emblem. This `main` branch is the classic, stable track.
+
 A Beamer theme of SDU for academic report, thesis and talk.
 
 Please feel free to submit issues or pull request and give a star⭐️ if the repository helps.
