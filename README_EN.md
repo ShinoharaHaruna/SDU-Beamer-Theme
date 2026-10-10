@@ -1,5 +1,11 @@
 # SDU-Beamer-Theme
 
+[![Build](https://img.shields.io/github/actions/workflow/status/ShinoharaHaruna/SDU-Beamer-Theme/online_compile.yml?branch=main)](https://github.com/ShinoharaHaruna/SDU-Beamer-Theme/actions/workflows/online_compile.yml)
+[![License](https://img.shields.io/github/license/ShinoharaHaruna/SDU-Beamer-Theme)](LICENSE)
+[![Last commit](https://img.shields.io/github/last-commit/ShinoharaHaruna/SDU-Beamer-Theme)](https://github.com/ShinoharaHaruna/SDU-Beamer-Theme/commits)
+[![Release](https://img.shields.io/github/v/release/ShinoharaHaruna/SDU-Beamer-Theme)](https://github.com/ShinoharaHaruna/SDU-Beamer-Theme/releases)
+![Engine](https://img.shields.io/badge/engine-LuaLaTeX-blue)
+
 > **dev branch**: modernization in progress. This branch targets cutting-edge practice and runs in parallel with the classic, stable track on `main`.
 > Roadmap:
 > 1. Migrate the compile engine from XeLaTeX to LuaLaTeX (`luatexja-fontspec` replaces `xeCJK`)
