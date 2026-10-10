@@ -98,17 +98,32 @@
 
 \subsection{历史沿革}
 
-\begin{frame}{历史沿革}
-    本模板的谱系可追源到早期的清华 Beamer 主题\footnote{最初版本发布在 latexstudio.net，原始下载链接现已失效。}，
-    演化过程如下（各项目地址见文末参考文献）：
-    \begin{itemize}
-        \item \textbf{THU-Beamer-Theme}：清华大学 TUNA 协会维护的主题 \cite{thu}
-        \item \textbf{PKU-Beamer-Theme}：在 THU 主题基础上为北大改配色的衍生版本 \cite{pku}
-        \item \textbf{SDU-Beamer-Theme}：由 Ura 在 PKU 主题基础上修改配色与布局而成 \cite{origin}
-        \item \textbf{本仓库}：在 SDU 主题基础上重构：默认 \(16:9\) 长宽比、
-              配色抽离为 \texttt{beamercolorthemeSDU.sty}、
-              补充中英文注释、接入 GitHub Actions 自动编译
-    \end{itemize}
+\begin{frame}{两个版本，两条路径}
+    本主题沿两条路径维护，谱系可追源到早期的清华 Beamer 主题%
+    \footnote{最初版本发布在 latexstudio.net，原始下载链接现已失效。}：
+    \begin{columns}[T]
+        \begin{column}{0.5\textwidth}
+            {\bfseries\color{peaking} \texttt{main}：经典版}
+            \begin{itemize}
+                \item THU-Beamer-Theme（TUNA 协会）\cite{thu}
+                \item PKU-Beamer-Theme \cite{pku}
+                \item SDU-Beamer-Theme（Ura 改配色与布局）\cite{origin}
+                \item 本仓库重构：\(16:9\) 长宽比、配色抽离为
+                      \texttt{beamercolorthemeSDU.sty}、GitHub Actions 自动编译
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            {\bfseries\color{peaking} \texttt{dev}：现代版（本页所示）}
+            \begin{itemize}
+                \item 与经典版并行维护的现代化重设计
+                \item 设计参考 Moloch\footnote{\url{https://github.com/jolars/moloch}}
+                      与 Jacquenetta\footnote{\url{https://github.com/smanchajm/Jacquenetta-beamer-theme}}
+                \item Lua\LaTeX{} + \texttt{luatexja} 引擎迁移
+                \item 详见下一页
+            \end{itemize}
+        \end{column}
+    \end{columns}
+    \vspace{1em}
     校徽矢量图来自 \cite{sdulogo}。
 \end{frame}
 
@@ -135,14 +150,14 @@
         \centering
         \begin{tabular}{ll}
             \toprule
-            文件                         & 作用              \\
+            文件                               & 作用                    \\
             \midrule
-            \texttt{slide.tex}         & 主文档（本文件）        \\
-            \texttt{beamerthemeSDU.sty}       & 主题样式：进度条、章节页、block 样式 \\
-            \texttt{beamercolorthemeSDU.sty}  & 配色定义，可整体替换      \\
-            \texttt{ref.bib}           & 参考文献条目          \\
-            \texttt{img/}              & 插图目录            \\
-            \texttt{fonts/}            & 随仓库分发的中文字体      \\
+            \texttt{slide.tex}               & 主文档（本文件）              \\
+            \texttt{beamerthemeSDU.sty}      & 主题样式：进度条、章节页、block 样式 \\
+            \texttt{beamercolorthemeSDU.sty} & 配色定义，可整体替换            \\
+            \texttt{ref.bib}                 & 参考文献条目                \\
+            \texttt{img/}                    & 插图目录                  \\
+            \texttt{fonts/}                  & 随仓库分发的中文字体            \\
             \bottomrule
         \end{tabular}
     \end{table}
@@ -412,7 +427,7 @@ def fib(n):
     \vfill
     {\Huge\bfseries Thanks!\par}
     \vskip 0.6em
-    {\color{peaking}\rule{4em}{1.4pt}\par}
+        {\color{peaking}\rule{4em}{1.4pt}\par}
     \vfill
 \end{frame}
 
