@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SDU-Beamer-Theme · 山东大学 LaTeX Beamer 演示文稿模板</title>
+<meta name="description" content="山东大学（Shandong University, SDU）非官方 LaTeX Beamer 幻灯片主题模板，适用于学术报告、论文答辩与组会汇报。XeLaTeX/LuaLaTeX 双版本，GitHub Actions 自动编译，支持 Overleaf 免费版。">
+<meta name="keywords" content="山东大学, SDU, Shandong University, Beamer, LaTeX, 答辩PPT, 幻灯片模板, presentation, slides, template, thesis defense">
+<meta property="og:title" content="SDU-Beamer-Theme · 山东大学 LaTeX Beamer 模板">
+<meta property="og:description" content="山东大学非官方 LaTeX Beamer 幻灯片主题。山大红 + 校徽，学术报告、论文答辩、组会汇报适用。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://shinoharaharuna.github.io/SDU-Beamer-Theme/">
+<meta property="og:image" content="https://raw.githubusercontent.com/ShinoharaHaruna/SDU-Beamer-Theme/main/img/README/main_page.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%23880000'/><text x='50' y='68' font-size='52' text-anchor='middle' fill='white' font-family='serif'>S</text></svg>">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "SDU-Beamer-Theme",
+  "description": "LaTeX Beamer presentation theme for Shandong University (SDU). 山东大学非官方 Beamer 幻灯片模板。",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Cross-platform",
+  "offers": { "@type": "Offer", "price": "0" },
+  "url": "https://github.com/ShinoharaHaruna/SDU-Beamer-Theme",
+  "codeRepository": "https://github.com/ShinoharaHaruna/SDU-Beamer-Theme",
+  "license": "https://opensource.org/licenses/MIT"
+}
+</script>
+<style>
+  :root { --sdu-red: #880000; --ink: #1a1a1a; --muted: #555; --bg-soft: #f7f5f4; --line: #e5e0de; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, "Segoe UI", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif; color: var(--ink); line-height: 1.7; background: #fff; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+  a { color: var(--sdu-red); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  header { border-bottom: 1px solid var(--line); padding: 16px 0; }
+  header .wrap { display: flex; justify-content: space-between; align-items: center; }
+  .brand { font-weight: 700; font-size: 17px; }
+  .brand span { color: var(--sdu-red); }
+  nav a { margin-left: 20px; font-size: 14px; color: var(--muted); }
+  nav a:hover { color: var(--sdu-red); }
+
+  .hero { padding: 72px 0 56px; text-align: center; }
+  .hero h1 { font-size: 40px; letter-spacing: -0.5px; }
+  .hero h1 em { font-style: normal; color: var(--sdu-red); }
+  .hero .sub { margin-top: 14px; font-size: 18px; color: var(--muted); }
+  .hero .btns { margin-top: 32px; }
+  .btn { display: inline-block; padding: 11px 26px; border-radius: 6px; font-size: 15px; font-weight: 600; margin: 0 8px; }
+  .btn-primary { background: var(--sdu-red); color: #fff; }
+  .btn-primary:hover { background: #6d0000; text-decoration: none; }
+  .btn-ghost { border: 1px solid var(--line); color: var(--ink); }
+  .btn-ghost:hover { border-color: var(--sdu-red); text-decoration: none; }
+  .hero img { margin-top: 48px; max-width: 720px; width: 100%; border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 12px 40px rgba(0,0,0,.08); }
+
+  section { padding: 56px 0; }
+  section h2 { font-size: 26px; margin-bottom: 24px; }
+  section h2::before { content: ""; display: inline-block; width: 4px; height: 22px; background: var(--sdu-red); margin-right: 10px; vertical-align: -3px; }
+
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .shots img { width: 100%; border: 1px solid var(--line); border-radius: 6px; }
+
+  .feat { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 40px; }
+  .feat div { padding-left: 14px; border-left: 3px solid var(--bg-soft); }
+  .feat h3 { font-size: 16px; margin-bottom: 4px; }
+  .feat p { font-size: 14px; color: var(--muted); }
+
+  table { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+  th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+  th { background: var(--bg-soft); font-weight: 600; }
+  td code, p code, li code { background: var(--bg-soft); padding: 1px 6px; border-radius: 4px; font-size: 13px; }
+
+  .steps { counter-reset: s; }
+  .steps li { list-style: none; margin-bottom: 14px; padding-left: 34px; position: relative; font-size: 15px; }
+  .steps li::before { counter-increment: s; content: counter(s); position: absolute; left: 0; top: 1px; width: 24px; height: 24px; background: var(--sdu-red); color: #fff; border-radius: 50%; font-size: 13px; text-align: center; line-height: 24px; }
+  pre { background: #2b2b2b; color: #e8e6e3; padding: 14px 18px; border-radius: 6px; overflow-x: auto; font-size: 13.5px; margin-top: 16px; }
+
+  .faq details { border-bottom: 1px solid var(--line); padding: 14px 0; }
+  .faq summary { cursor: pointer; font-weight: 600; font-size: 15.5px; }
+  .faq summary::marker { color: var(--sdu-red); }
+  .faq details p { margin-top: 8px; font-size: 14.5px; color: var(--muted); }
+
+  .en { background: var(--bg-soft); }
+  .en p { font-size: 14.5px; color: var(--muted); max-width: 720px; }
+
+  footer { border-top: 1px solid var(--line); padding: 32px 0 48px; font-size: 13.5px; color: var(--muted); }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 30px; }
+    .shots, .feat { grid-template-columns: 1fr; }
+    .btn { display: block; margin: 8px 0; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="brand">SDU-<span>Beamer</span>-Theme</div>
+    <nav>
+      <a href="#preview">预览</a>
+      <a href="#versions">版本</a>
+      <a href="#start">快速开始</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://github.com/ShinoharaHaruna/SDU-Beamer-Theme">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <h1>山东大学 <em>LaTeX Beamer</em> 主题</h1>
+    <p class="sub">山大红 + 校徽标识，学术报告、论文答辩、组会汇报开箱即用</p>
+    <div class="btns">
+      <a class="btn btn-primary" href="https://github.com/ShinoharaHaruna/SDU-Beamer-Theme/releases/latest">下载最新版</a>
+      <a class="btn btn-ghost" href="https://github.com/ShinoharaHaruna/SDU-Beamer-Theme">GitHub 仓库</a>
+    </div>
+    <img src="img/main_page.png" alt="SDU-Beamer-Theme 封面页效果">
+  </div>
+</div>
+
+<section id="preview">
+  <div class="wrap">
+    <h2>预览</h2>
+    <div class="shots">
+      <img src="img/instance1.png" alt="内容页效果">
+      <img src="img/instance2.png" alt="内容页效果二">
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>特性</h2>
+    <div class="feat">
+      <div>
+        <h3>山大官方视觉元素</h3>
+        <p>山大红主题色、校徽页脚、规范的封面与目录页。</p>
+      </div>
+      <div>
+        <h3>一键编译</h3>
+        <p>附 .latexmkrc，latexmk 自动完成 biber 与多遍编译；仓库内 GitHub Actions 每次推送自动构建 PDF。</p>
+      </div>
+      <div>
+        <h3>Overleaf 免费版适配</h3>
+        <p>pack_overleaf.sh 可生成精简包，绕开免费版编译超时限制。</p>
+      </div>
+      <div>
+        <h3>示例齐全</h3>
+        <p>slide.tex 覆盖参考文献、代码高亮、TikZ 插图等学术演示常用场景。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="versions">
+  <div class="wrap">
+    <h2>两个版本</h2>
+    <p style="font-size:14.5px; color:var(--muted); margin-bottom:16px;">两条产品线并行维护，按需求选择：</p>
+    <table>
+      <tr><th></th><th>v1.x（main 分支）</th><th>v2.x（dev 分支）</th></tr>
+      <tr><td><strong>定位</strong></td><td>稳定，沿用原 SDU Beamer 版式</td><td>Moloch/Metropolis 谱系重设计：无导航条、大留白、细进度条</td></tr>
+      <tr><td><strong>编译引擎</strong></td><td>XeLaTeX + xeCJK</td><td>LuaLaTeX + luatexja-fontspec</td></tr>
+      <tr><td><strong>字体</strong></td><td>LXGW WenKai + Sarasa Mono（仓库附赠）</td><td>Noto Sans CJK + Fira（系统字体）</td></tr>
+      <tr><td><strong>最新版本</strong></td><td><a href="https://github.com/ShinoharaHaruna/SDU-Beamer-Theme/releases/tag/v1.0.0">v1.0.0</a></td><td><a href="https://github.com/ShinoharaHaruna/SDU-Beamer-Theme/releases/tag/v2.0.0-beta.1">v2.0.0-beta.1（公测）</a></td></tr>
+    </table>
+  </div>
+</section>
+
+<section id="start">
+  <div class="wrap">
+    <h2>快速开始</h2>
+    <ol class="steps">
+      <li>安装 TeX Live（或 MacTeX / MiKTeX），中文支持需要 XeLaTeX。</li>
+      <li>克隆仓库 <code>git clone https://github.com/ShinoharaHaruna/SDU-Beamer-Theme.git</code>，或在 Releases 页下载起步包 zip。</li>
+      <li>运行 <code>latexmk</code> 生成 slide.pdf，然后改 slide.tex 写自己的内容。</li>
+    </ol>
+    <pre>git clone https://github.com/ShinoharaHaruna/SDU-Beamer-Theme.git
+cd SDU-Beamer-Theme
+latexmk</pre>
+  </div>
+</section>
+
+<section id="faq" class="faq">
+  <div class="wrap">
+    <h2>常见问题</h2>
+    <details open>
+      <summary>毕业答辩可以用这个模板吗？</summary>
+      <p>可以。这是山东大学风格的非官方 Beamer 主题，大量学术报告与答辩场景在用。注意确认所在学院是否要求 pptx 格式——Beamer 输出 PDF，如需 pptx 可用 pdf2pptx 等工具转换。</p>
+    </details>
+    <details>
+      <summary>Overleaf 免费版能编译吗？</summary>
+      <p>完整版超出免费版编译时限。仓库自带 pack_overleaf.sh，执行 <code>./pack_overleaf.sh --no-bib</code> 生成精简包，已验证可在免费版编译。</p>
+    </details>
+    <details>
+      <summary>v1.x 和 v2.x 该选哪个？</summary>
+      <p>求稳定、要参加正式答辩选 v1.x；喜欢现代设计风格、愿意尝鲜选 v2.x 公测版。两条线都会持续维护。</p>
+    </details>
+    <details>
+      <summary>需要安装什么字体？</summary>
+      <p>v1.x 起步包已附带所需的 LXGW WenKai 与 Sarasa Mono SC 正体字重，Times New Roman / Arial 使用系统自带即可。v2.x 使用 Noto Sans CJK 与 Fira 系列，多数 TeX Live 安装自带。</p>
+    </details>
+    <details>
+      <summary>bibtex 还是 biber？</summary>
+      <p>本项目按 biber 配置参考文献，直接运行 latexmk 会自动处理，不建议改用 bibtex。</p>
+    </details>
+  </div>
+</section>
+
+<section class="en">
+  <div class="wrap">
+    <h2>English</h2>
+    <p>
+      SDU-Beamer-Theme is an unofficial LaTeX Beamer theme for Shandong University (SDU), built for academic talks,
+      thesis defenses, and group-meeting presentations. Two product lines are maintained in parallel: the v1.x series
+      (XeLaTeX, classic layout) and the v2.x series (LuaLaTeX, Moloch-style modern redesign, currently in beta).
+      Both ship with one-command <code>latexmk</code> builds, GitHub Actions PDF builds, and a script that produces an
+      Overleaf-free-plan-compatible package. See
+      <a href="https://github.com/ShinoharaHaruna/SDU-Beamer-Theme">the GitHub repository</a> for documentation and downloads.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>MIT License · 基于 PKU-Beamer-Theme，致谢 THU-Beamer-Theme 与原作者 Ura</div>
+    <div><a href="https://github.com/ShinoharaHaruna/SDU-Beamer-Theme/issues">反馈问题</a> · <a href="https://github.com/ShinoharaHaruna/SDU-Beamer-Theme">Star 本项目</a></div>
+  </div>
+</footer>
+
+</body>
+</html>
