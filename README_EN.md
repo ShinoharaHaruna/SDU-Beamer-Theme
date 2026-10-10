@@ -1,5 +1,11 @@
 # SDU-Beamer-Theme
 
+[![Build](https://img.shields.io/github/actions/workflow/status/ShinoharaHaruna/SDU-Beamer-Theme/online_compile.yml?branch=main)](https://github.com/ShinoharaHaruna/SDU-Beamer-Theme/actions/workflows/online_compile.yml)
+[![License](https://img.shields.io/github/license/ShinoharaHaruna/SDU-Beamer-Theme)](LICENSE)
+[![Last commit](https://img.shields.io/github/last-commit/ShinoharaHaruna/SDU-Beamer-Theme)](https://github.com/ShinoharaHaruna/SDU-Beamer-Theme/commits)
+[![Release](https://img.shields.io/github/v/release/ShinoharaHaruna/SDU-Beamer-Theme)](https://github.com/ShinoharaHaruna/SDU-Beamer-Theme/releases)
+![Engine](https://img.shields.io/badge/engine-XeLaTeX-blue)
+
 A Beamer theme of SDU for academic report, thesis and talk.
 
 Please feel free to submit issues or pull request and give a star⭐️ if the repository helps.

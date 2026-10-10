@@ -1,5 +1,11 @@
 # SDU-Beamer-Theme
 
+[![Build](https://img.shields.io/github/actions/workflow/status/ShinoharaHaruna/SDU-Beamer-Theme/online_compile.yml?branch=main)](https://github.com/ShinoharaHaruna/SDU-Beamer-Theme/actions/workflows/online_compile.yml)
+[![License](https://img.shields.io/github/license/ShinoharaHaruna/SDU-Beamer-Theme)](LICENSE)
+[![Last commit](https://img.shields.io/github/last-commit/ShinoharaHaruna/SDU-Beamer-Theme)](https://github.com/ShinoharaHaruna/SDU-Beamer-Theme/commits)
+[![Release](https://img.shields.io/github/v/release/ShinoharaHaruna/SDU-Beamer-Theme)](https://github.com/ShinoharaHaruna/SDU-Beamer-Theme/releases)
+![Engine](https://img.shields.io/badge/engine-XeLaTeX-blue)
+
 SDU 的 Beamer 主题，用于学术报告、论文和演讲。
 
 请随时提交问题或提交 PR。如果该项目有帮助，欢迎 Star⭐️。
