@@ -108,10 +108,24 @@
         \item \textbf{本仓库}：在 SDU 主题基础上重构：默认 \(16:9\) 长宽比、
               配色抽离为 \texttt{beamercolorthemeSDU.sty}、
               补充中英文注释、接入 GitHub Actions 自动编译
-        \item \textbf{本页所示（\texttt{dev} 分支）}：吸收 Moloch 与 Jacquenetta
-              设计语言、迁移至 Lua\LaTeX{} 的现代版，已与经典版分为不同谱系
     \end{itemize}
     校徽矢量图来自 \cite{sdulogo}。
+\end{frame}
+
+\begin{frame}{本分支：现代化重设计}
+    你正在查看的这份文档由 \texttt{dev} 分支构建，是一次谱系级重构，
+    与 \texttt{main} 分支的经典版主题并行维护：
+    \begin{itemize}
+        \item 设计谱系：吸收 \textbf{Moloch}（Metropolis 的现代继承者）与
+              \textbf{Jacquenetta} 的设计语言——白底、无导航条、细进度条、
+              大字号无衬线标题、统一左竖条 callout、深色章节页
+        \item 机构标识：仅保留山大红与校徽
+        \item 引擎：从 Xe\LaTeX{} 迁移至 \textbf{Lua\LaTeX{}}，
+              中文排版由 \texttt{luatexja} 处理
+        \item 字体：Fira Sans 正文 + Noto Sans CJK 中文，
+              中英文统一无衬线
+        \item 需要经典版式请切换到 \texttt{main} 分支
+    \end{itemize}
 \end{frame}
 
 \subsection{项目结构}
