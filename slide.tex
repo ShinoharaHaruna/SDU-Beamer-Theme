@@ -16,13 +16,14 @@
 \usepackage{luatexja-fontspec} % 中文字体支持, LuaLaTeX 版 / Chinese font support for LuaLaTeX
 
 % 设置中文字体 / Set Chinese fonts (luatexja-fontspec 宏名)
-\setsansjfont[AutoFakeBold]{LXGW WenKai}
-\setmainjfont{LXGW WenKai}
-\setmonojfont{Sarasa Mono SC}
+\setmainjfont{Noto Sans CJK SC}
+\setsansjfont{Noto Sans CJK SC}
+\setmonojfont{Noto Sans Mono CJK SC}
 
 % 设置英文字体 / Set English fonts
-\setmainfont{Times New Roman} % 主字体 / Main font
-\setsansfont{Arial} % 无衬线字体 / Sans-serif font
+\setsansfont{Fira Sans} % 正文默认无衬线 / Beamer body text is sans by default
+\setmainfont{Fira Sans} % 主字体 / Main font
+\setmonofont{Fira Mono} % 等宽字体 / Monospace font
 
 % Overleaf 方案（无须自定义字体）/ Overleaf solution (no need to customize fonts)
 % \setsansjfont{FandolHei}[
@@ -77,10 +78,13 @@
     本模板是面向山东大学的 \LaTeX{} Beamer 主题，适用于学术汇报、
     开题与答辩等场合，主要特性包括：
     \begin{itemize}
-        \item 默认 \(16:9\) 宽屏长宽比，配色以山大红（CMYK 26/100/100/28）为主色
+        \item 默认 \(16:9\) 宽屏长宽比，白底，山大红（CMYK 26/100/100/28）作强调色
+        \item 无导航条，页脚为细进度条 + 页码；\texttt{[border]} 选项可加页面黑框
         \item 使用 Lua\LaTeX{} 编译，通过 \texttt{luatexja} 支持中文排版
-        \item 配色集中在 \texttt{beamercolorthemeSDU.sty}，改一处即可整体换色
-        \item 每个 section 和 subsection 前自动插入目录页
+        \item 配色集中在 \texttt{beamercolorthemeSDU.sty}，
+              \texttt{\textbackslash sdusetaccent} 一条命令换强调色
+        \item 每个 section 前自动生成深色章节页（幽灵数字 + 章节名）
+        \item 三类 block 统一为左竖条 callout 风格，竖条颜色区分语义
         \item 预置代码高亮、三线表、参考文献等常用配置
     \end{itemize}
 \end{frame}
@@ -111,7 +115,7 @@
             文件                         & 作用              \\
             \midrule
             \texttt{slide.tex}         & 主文档（本文件）        \\
-            \texttt{beamerthemeSDU.sty}       & 主题样式：页脚、目录、常用宏包 \\
+            \texttt{beamerthemeSDU.sty}       & 主题样式：进度条、章节页、block 样式 \\
             \texttt{beamercolorthemeSDU.sty}  & 配色定义，可整体替换      \\
             \texttt{ref.bib}           & 参考文献条目          \\
             \texttt{img/}              & 插图目录            \\
@@ -260,7 +264,7 @@ latexmk          # 读取 .latexmkrc，自动完成全部编译步骤
             \bottomrule
         \end{tabular}
     \end{table}
-    如表~\ref{tab:engines} 所示，本模板采用 Xe\LaTeX{}。
+    如表~\ref{tab:engines} 所示，本模板采用 Lua\LaTeX{}。
 \end{frame}
 
 \subsection{插图与分栏}
@@ -382,9 +386,11 @@ def fib(n):
 
 % 致谢页 / Thanks page
 \begin{frame}
-    \begin{center}
-        {\Huge\calligra Thanks!}
-    \end{center}
+    \vfill
+    {\Huge\bfseries Thanks!\par}
+    \vskip 0.6em
+    {\color{peaking}\rule{4em}{1.4pt}\par}
+    \vfill
 \end{frame}
 
 \end{document}
