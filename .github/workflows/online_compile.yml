@@ -17,7 +17,8 @@ jobs:
         uses: awalsh128/cache-apt-pkgs-action@latest
         with:
           packages: >-
-            texlive-latex-base texlive-xetex texlive-extra-utils
+            texlive-latex-base texlive-luatex texlive-lang-japanese
+            texlive-extra-utils
             texlive-fonts-recommended texlive-fonts-extra lmodern
             texlive-latex-extra biber fontconfig latex-cjk-all
             texlive-pstricks texlive-bibtex-extra texlive-science
@@ -62,7 +63,7 @@ jobs:
             echo "Error: slide.tex not found."
             exit 1
           fi
-          # latexmk 读取 .latexmkrc：xelatex -> biber -> 重复编译直至收敛
+          # latexmk 读取 .latexmkrc：lualatex -> biber -> 重复编译直至收敛
           latexmk slide.tex
 
       - name: Upload PDF as artifact

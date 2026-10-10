@@ -1,39 +1,39 @@
-% !TeX program = xelatex
+% !TeX program = lualatex
 \documentclass[aspectratio=169]{beamer}
 
-% 如果在 Overleaf 上编译，注意切换到 XeLaTeX 作为编译器
-% If you are using Overleaf, switch to XeLaTeX as the compiler
+% 如果在 Overleaf 上编译，注意切换到 LuaLaTeX 作为编译器
+% If you are using Overleaf, switch to LuaLaTeX as the compiler
 %
 % 推荐编译方式 / Recommended toolchain:
-%   latexmk        （读取 .latexmkrc，自动执行 xelatex -> biber -> xelatex 直至收敛）
+%   latexmk        （读取 .latexmkrc，自动执行 lualatex -> biber -> lualatex 直至收敛）
 % 手动等价命令 / Manual equivalent:
-%   xelatex slide.tex && biber slide && xelatex slide.tex && xelatex slide.tex
+%   lualatex slide.tex && biber slide && lualatex slide.tex && lualatex slide.tex
 % 不推荐使用 bibtex，本项目按 biber 配置。
 % bibtex is not recommended: this project is configured for biber.
 
 % 字体设置 / Font settings
 \usepackage{fontspec} % 字体选择 / Font selection
-\usepackage{xeCJK} % 中文字体支持 / Chinese font support
+\usepackage{luatexja-fontspec} % 中文字体支持, LuaLaTeX 版 / Chinese font support for LuaLaTeX
 
-% 设置中文字体 / Set Chinese fonts
-\setCJKsansfont[AutoFakeBold]{LXGW WenKai}
-\setCJKmainfont{LXGW WenKai}
-\setCJKmonofont{Sarasa Mono SC}
+% 设置中文字体 / Set Chinese fonts (luatexja-fontspec 宏名)
+\setsansjfont[AutoFakeBold]{LXGW WenKai}
+\setmainjfont{LXGW WenKai}
+\setmonojfont{Sarasa Mono SC}
 
 % 设置英文字体 / Set English fonts
 \setmainfont{Times New Roman} % 主字体 / Main font
 \setsansfont{Arial} % 无衬线字体 / Sans-serif font
 
 % Overleaf 方案（无须自定义字体）/ Overleaf solution (no need to customize fonts)
-% \setCJKsansfont{FandolHei}[
+% \setsansjfont{FandolHei}[
 %   BoldFont = FandolHei-Bold
 % ]
-% \setCJKmainfont{FandolSong}[
+% \setmainjfont{FandolSong}[
 %   BoldFont = FandolSong-Bold,
 %   ItalicFont = FandolKai,
 %   BoldItalicFont = FandolKai
 % ]
-% \setCJKmonofont{FandolFang}
+% \setmonojfont{FandolFang}
 
 % 参考文献 / References
 \usepackage[style=numeric-comp, backend=biber]{biblatex} % 参考文献管理 / Bibliography management
@@ -78,7 +78,7 @@
     开题与答辩等场合，主要特性包括：
     \begin{itemize}
         \item 默认 \(16:9\) 宽屏长宽比，配色以山大红（CMYK 26/100/100/28）为主色
-        \item 使用 Xe\LaTeX{} 编译，通过 \texttt{xeCJK} 支持中文排版
+        \item 使用 Lua\LaTeX{} 编译，通过 \texttt{luatexja} 支持中文排版
         \item 配色集中在 \texttt{beamercolorthemeSDU.sty}，改一处即可整体换色
         \item 每个 section 和 subsection 前自动插入目录页
         \item 预置代码高亮、三线表、参考文献等常用配置
@@ -124,15 +124,15 @@
 \subsection{编译方式}
 
 \begin{frame}[fragile]{编译方式}
-    需要支持中文的 Xe\LaTeX{} 工具链，本地编译命令为：
+    需要支持中文的 Lua\LaTeX{} 工具链，本地编译命令为：
     \begin{lstlisting}[language=bash,numbers=none]
 latexmk          # 读取 .latexmkrc，自动完成全部编译步骤
 \end{lstlisting}
-    手动等价为 \texttt{xelatex -> biber -> xelatex -> xelatex}：
+    手动等价为 \texttt{lualatex -> biber -> lualatex -> lualatex}：
     \begin{itemize}
         \item 使用 VS Code 可安装 \texttt{LaTeX Workshop} 插件，
-              配置 \texttt{xelatex -> biber -> xelatex} recipe
-        \item 使用 Overleaf 请将编译器切换为 XeLaTeX
+              配置 \texttt{lualatex -> biber -> lualatex} recipe
+        \item 使用 Overleaf 请将编译器切换为 LuaLaTeX
         \item 仓库自带 GitHub Actions，每次 push 自动编译并回传 PDF
     \end{itemize}
 \end{frame}
@@ -161,7 +161,7 @@ latexmk          # 读取 .latexmkrc，自动完成全部编译步骤
             \begin{description}
                 \item[LaTeX] 专业排版系统
                 \item[Beamer] 学术幻灯片文档类
-                \item[XeLaTeX] 原生支持 Unicode 字体的引擎
+                \item[LuaLaTeX] 原生支持 Unicode 字体的引擎
             \end{description}
         \end{column}
     \end{columns}
