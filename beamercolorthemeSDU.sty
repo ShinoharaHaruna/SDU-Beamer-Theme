@@ -1,67 +1,71 @@
 % beamercolorthemeSDU.sty — SDU Beamer 颜色主题 / SDU Beamer color theme
 % 用法 / Usage: \usecolortheme{SDU}（\usetheme{SDU} 已自动加载）
-% 主色为山大红 CMYK(26,100,100,28)，修改此文件即可更换整套配色
-% The main color is SDU red CMYK(26,100,100,28); edit this file to restyle the deck
+% 设计基调：白底，山大红只作强调色（frametitle 分隔线、进度条、结构色、block 竖条）
+% Design: white background; SDU red acts only as an accent
+% (title rule, progress bar, structure color, block side bars)
 \mode<presentation>
 
 \RequirePackage{xcolor}
 
-% 主题色：山大红官方定义 CMYK(26,100,100,28)
-% Main theme color: official SDU red CMYK(26,100,100,28)
+% 主题色：山大红官方定义 CMYK(26,100,100,28)，整套配色围绕它展开。
+% 想换强调色：加载主题后执行 \sdusetaccent{<xcolor 颜色>} 即可整体替换。
+% Main accent: official SDU red CMYK(26,100,100,28).
+% To recolor the whole deck, call \sdusetaccent{<xcolor color>} after \usetheme.
 \xdefinecolor{peaking}{cmyk}{0.26,1.0,1.0,0.28}
+\newcommand{\sdusetaccent}[1]{%
+  \colorlet{peaking}{#1}%
+  \setbeamercolor{structure}{fg=peaking}%
+  \setbeamercolor{block title}{fg=peaking}%
+}
 
-% 页脚、帧标题、标题页 / Footline, frame title, title page
-\setbeamercolor{footline}{bg=peaking}
-\setbeamercolor{footline wing}{bg=peaking!30!black} % 页脚两翼深色区 / darker wings of the footline
-\setbeamercolor{frametitle}{bg=peaking,fg=white}
-\setbeamercolor{title}{bg=peaking}
+% 辅助色 / Supporting colors
+\definecolor{sdudark}{gray}{0.12}   % 章节页底色 / section-page background
+\definecolor{sdugray}{gray}{0.94}   % block 浅灰底 / light block background
+\definecolor{sdualert}{rgb}{0.72,0.22,0.05}  % alertblock 竖条 / alert bar
+\definecolor{sduexample}{rgb}{0.05,0.45,0.28} % exampleblock 竖条 / example bar
 
-% 顶部导航条（smoothbars）：当前节白字，其余节淡红，进度点白色
-% Top navigation bar (smoothbars): current section in white,
-% other sections dimmed, mini-frame dots in white
-\setbeamercolor{section in head/foot}{fg=white,bg=peaking}
-\setbeamercolor{section in head/foot shaded}{fg=peaking!45!white}
-\setbeamercolor{subsection in head/foot}{fg=white}
-\setbeamercolor{subsection in head/foot shaded}{fg=peaking!45!white}
-\setbeamercolor{mini frame}{fg=white,bg=peaking}
-
-% 页脚三段文字统一为白字，保证在深红底上的可读性
-% White text for all footline parts, readable on the dark red bands
-\setbeamercolor{author in head/foot}{fg=white}
-\setbeamercolor{institute in head/foot}{fg=white}
-\setbeamercolor{title in head/foot}{fg=white,bg=peaking!60!black}
-\setbeamercolor{date in head/foot}{fg=white}
-\setbeamercolor{frame number}{fg=white}
-
-% 调色板 / Palettes
-\setbeamercolor{palette primary}{use=structure,fg=white,bg=structure.fg}
-\setbeamercolor{palette secondary}{use=structure,fg=white,bg=structure.fg!75!black}
-\setbeamercolor{palette tertiary}{use=structure,fg=white,bg=structure.fg!50!black}
-\setbeamercolor{palette quaternary}{fg=white,bg=structure.fg!50!black}
-
-% 标题类元素 / Title-like elements
-\setbeamercolor{titlelike}{parent=palette primary}
-
-% 块标题 / Block titles
-\setbeamercolor{block title}{bg=peaking,fg=white}
-\setbeamercolor*{block title example}{use={normal text,example text},bg=white,fg=peaking}
-
-% 分隔线与列表项目 / Separation lines and items
-\setbeamercolor{fine separation line}{}
-\setbeamercolor{item projected}{fg=white}
-
-% 侧边栏 / Sidebar
-\setbeamercolor{palette sidebar primary}{use=normal text,fg=normal text.fg}
-\setbeamercolor{palette sidebar quaternary}{use=structure,fg=structure.fg}
-\setbeamercolor{palette sidebar secondary}{use=structure,fg=structure.fg}
-\setbeamercolor{palette sidebar tertiary}{use=normal text,fg=normal text.fg}
-\setbeamercolor{section in sidebar}{fg=brown}
-\setbeamercolor{section in sidebar shaded}{fg=grey}
-\setbeamercolor{separation line}{}
-\setbeamercolor{sidebar}{bg=peaking}
-\setbeamercolor{sidebar}{parent=palette primary}
+% 全局：白底黑字，强调色走 structure
+% Global: black on white, accent via structure
+\setbeamercolor{normal text}{fg=black!92!white,bg=white}
 \setbeamercolor{structure}{fg=peaking}
-\setbeamercolor{subsection in sidebar}{fg=brown}
-\setbeamercolor{subsection in sidebar shaded}{fg=grey}
+\setbeamercolor{alerted text}{fg=sdualert}
+\setbeamercolor{example text}{fg=sduexample}
+
+% 帧标题与页脚 / Frame title and footline
+\setbeamercolor{frametitle}{fg=black!90!white,bg=white}
+\setbeamercolor{framesubtitle}{fg=black!55!white}
+\setbeamercolor{page number in head/foot}{fg=black!55!white}
+\setbeamercolor{footline}{fg=black!55!white,bg=white}
+
+% 标题页 / Title page
+\setbeamercolor{title}{fg=black!92!white}
+\setbeamercolor{subtitle}{fg=black!55!white}
+\setbeamercolor{author}{fg=black!80!white}
+\setbeamercolor{institute}{fg=black!55!white}
+\setbeamercolor{date}{fg=black!55!white}
+
+% 章节页 / Section pages
+\setbeamercolor{section title}{fg=white}
+
+% 块：标题取对应竖条色，标题与正文底统一浅灰，
+% 竖条本身由 tcolorbox 在 beamerthemeSDU.sty 里画。
+% Blocks: titles take the bar color; title and body share the light gray
+% background; the side bar itself is drawn by tcolorbox in beamerthemeSDU.sty.
+\setbeamercolor{block title}{fg=peaking,bg=sdugray}
+\setbeamercolor{block body}{bg=sdugray}
+\setbeamercolor{block title alerted}{fg=sdualert,bg=sdugray}
+\setbeamercolor{block body alerted}{bg=sdugray}
+\setbeamercolor{block title example}{fg=sduexample,bg=sdugray}
+\setbeamercolor{block body example}{bg=sdugray}
+
+% 目录与小部件 / TOC and small items
+\setbeamercolor{section in toc}{fg=black!90!white}
+\setbeamercolor{subsection in toc}{fg=black!60!white}
+\setbeamercolor{item projected}{fg=white,bg=peaking}
+\setbeamercolor{caption name}{fg=black!60!white}
+\setbeamercolor{bibliography item}{fg=black!60!white}
+\setbeamercolor{bibliography entry author}{fg=black!92!white}
+\setbeamercolor{bibliography entry title}{fg=black!92!white}
+\setbeamercolor{bibliography entry note}{fg=black!60!white}
 
 \mode<all>

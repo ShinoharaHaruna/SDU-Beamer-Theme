@@ -1,101 +1,178 @@
 % beamerthemeSDU.sty — 山东大学 Beamer 主题 / SDU Beamer Theme
-% 用法 / Usage: \usetheme{SDU}
-% 配色可替换 / Color theme can be swapped: \usecolortheme{SDU}
+% 用法 / Usage: \usetheme{SDU}，可选 \usetheme[border]{SDU} 给每页加粗黑边框
+%              \usetheme[border]{SDU} draws a thick black border on every page
+% 设计语言：白底、左对齐大标题、底部进度条、左竖条 callout、深色章节页
+% 参考 Moloch（Metropolis fork）与 Jacquenetta
 \mode<presentation>
 
-% 使用外部主题 / Use outer theme
-\useoutertheme[footline=authorinstitutetitle]{smoothbars}
+% ---------- 主题选项 / Theme option ----------
+\newif\ifSDU@border
+\DeclareOptionBeamer{border}{\SDU@bordertrue}
+\ProcessOptionsBeamer
 
-% 颜色和图形支持 / Colors and graphics support
-\RequirePackage{xcolor} % 颜色支持 / Color support
-\RequirePackage{graphicx} % 插入图像 / Include graphics
-\RequirePackage{tikz} % 绘图 / Drawing
+% ---------- 宏包 / Packages ----------
+\RequirePackage{xcolor}
+\RequirePackage{graphicx}
+\RequirePackage{tikz}
+\RequirePackage{tcolorbox}
+\tcbuselibrary{skins}
 
-% 自定义颜色 / Custom colors
+\RequirePackage{amsmath}
+\RequirePackage{booktabs}
+\RequirePackage{multicol}
+\RequirePackage{latexsym}
+\RequirePackage{calligra}
+\RequirePackage[normalem]{ulem} % 不接管 \emph，避免与 biblatex 冲突 / keep \emph intact for biblatex
+
+% 代码显示 / Code listings
+\RequirePackage{listings}
 \definecolor{deepblue}{rgb}{0,0,0.5}
 \definecolor{deepred}{rgb}{0.6,0,0}
 \definecolor{deepgreen}{rgb}{0,0.5,0}
 \definecolor{halfgray}{gray}{0.55}
-
-% 代码显示设置 / Code display settings
-\RequirePackage{listings} % 插入代码 / Insert code
 \lstset{
     basicstyle=\ttfamily\small,
     keywordstyle=\bfseries\color{deepblue},
-    emphstyle=\ttfamily\color{deepred}, % 自定义高亮样式 / Custom highlighting style
+    emphstyle=\ttfamily\color{deepred},
     stringstyle=\color{deepgreen},
     numbers=left,
     numberstyle=\small\color{halfgray},
-    rulesepcolor=\color{red!20!green!20!blue!20},
-    frame=shadowbox,
+    backgroundcolor=\color{black!4},
+    frame=none,
+    xleftmargin=1em,
 }
-
-% 数学符号和公式支持 / Math symbols and formulas support
-\RequirePackage{amsmath} % 数学公式 / Math formulas
-
-% 表格支持 / Tables support
-\RequirePackage{booktabs} % 优雅的表格线 / Elegant table lines
-\RequirePackage{multicol} % 多栏布局 / Multi-column layout
-
-% 文本样式支持 / Text styles support
-\RequirePackage{latexsym} % 额外的符号 / Additional symbols
-\RequirePackage{calligra} % 花体字体 / Calligraphic font
-\RequirePackage[normalem]{ulem} % 下划线和删除线（不接管 \emph，避免与 biblatex 冲突）/ Underlining and strikethrough (keep \emph intact for biblatex)
 
 % 自定义命令 / Custom commands
 \def\cmd#1{\texttt{\color{red}\footnotesize $\backslash$#1}}
 \def\env#1{\texttt{\color{blue}\footnotesize #1}}
 
-% 自定义页脚格式 / Custom footer format
-\makeatletter
-\newcommand{\frameofframes}{/}
-\newcommand{\setframeofframes}[1]{\renewcommand{\frameofframes}{#1}}
-\setbeamertemplate{footline}{
-  \begin{beamercolorbox}[colsep=1.5pt]{upper separation line foot}
-  \end{beamercolorbox}
-  \leavevmode%
-  \hbox{%
-  \begin{beamercolorbox}[wd=.3\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm]{footline wing}%
-    {\usebeamerfont{author in head/foot}\usebeamercolor[fg]{author in head/foot}\insertshortauthor}%
-    \hspace{1em}{\usebeamerfont{institute in head/foot}\usebeamercolor[fg]{institute in head/foot}\insertshortinstitute}%
-  \end{beamercolorbox}%
-  \begin{beamercolorbox}[wd=.4\paperwidth,ht=2.5ex,dp=1.125ex,center]{footline}%
-    {\usebeamerfont{title in head/foot}\usebeamercolor[fg]{title in head/foot}\insertshorttitle}%
-  \end{beamercolorbox}%
-  \begin{beamercolorbox}[wd=.3\paperwidth,ht=2.5ex,dp=1.125ex,rightskip=.3cm]{footline wing}%
-    \hfill%
-    {\usebeamerfont{frame number}\usebeamercolor[fg]{frame number}\insertframenumber~\frameofframes~\inserttotalframenumber}%
-  \end{beamercolorbox}%
-  }%
-  \begin{beamercolorbox}[colsep=1.5pt]{lower separation line foot}
-  \end{beamercolorbox}
-}
-\makeatother
-
-% 使用内部主题 / Use inner theme
-\useinnertheme{circles}
-
-% 加载颜色主题 / Load color theme
+% ---------- 配色 / Colors ----------
 \usecolortheme{SDU}
 
-\setbeamerfont{frametitle}{size=\large}
+% ---------- Outer theme：无导航条，headline 为空 ----------
+% ---------- No navigation bars or symbols -----------
+\setbeamertemplate{headline}{}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{sidebar left}{}
+\setbeamertemplate{sidebar right}{}
 
-% 设置参考文献和标题模板 / Set bibliography and caption templates
+% footline：右下角 X/N 页码 + 底部山大红进度条（压在浅灰轨道上）
+% Footline: X/N page number bottom right plus an accent progress bar
+% laid over a light gray track at the very bottom edge
+\setbeamertemplate{footline}{%
+  \hbox to \paperwidth{%
+    \hfill
+    {\usebeamerfont{page number in head/foot}%
+     \usebeamercolor[fg]{page number in head/foot}%
+     \insertframenumber\,/\,\inserttotalframenumber}%
+    \hspace*{1em}%
+  }%
+  \vskip 3pt%
+  \nointerlineskip
+  \hbox{%
+    {\color{black!12}\rule{\paperwidth}{0.6pt}}%
+    \hskip-\paperwidth
+    {\color{peaking}%
+     \ifnum\inserttotalframenumber>0
+       \rule{\dimexpr\paperwidth*\insertframenumber/\inserttotalframenumber\relax}{1.3pt}%
+     \fi}%
+  }%
+}
+
+% ---------- frametitle：左对齐大字 + 下方细分隔线 ----------
+\setbeamertemplate{frametitle}{%
+  \vskip 1.0em%
+  {\usebeamerfont{frametitle}\usebeamercolor[fg]{frametitle}\insertframetitle\par}%
+  \ifx\insertframesubtitle\@empty\else
+    \vskip 0.25em%
+    {\usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}\insertframesubtitle\par}%
+  \fi
+  \vskip 0.4em%
+  {\color{peaking}\rule{\textwidth}{1pt}\par}%
+  \vskip 0.1em%
+}
+\setbeamerfont{frametitle}{size=\Large,series=\bfseries}
+\setbeamerfont{framesubtitle}{size=\normalsize}
+
+% ---------- 标题页：大留白、左对齐 ----------
+\setbeamertemplate{title page}{%
+  \vfill\vfill
+  {\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle\par}%
+  \vskip 0.4em%
+  {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
+  \vskip 1.4em%
+  {\color{peaking}\rule{4em}{1.4pt}\par}%
+  \vskip 1.4em%
+  {\usebeamerfont{author}\usebeamercolor[fg]{author}\insertauthor\par}%
+  \vskip 0.3em%
+  {\usebeamerfont{institute}\usebeamercolor[fg]{institute}\insertinstitute\par}%
+  \vskip 0.3em%
+  {\usebeamerfont{date}\usebeamercolor[fg]{date}\insertdate\par}%
+  \vfill
+}
+\setbeamerfont{title}{size=\huge,series=\bfseries}
+\setbeamerfont{subtitle}{size=\large}
+\setbeamerfont{author}{size=\normalsize}
+\setbeamerfont{institute}{size=\small}
+\setbeamerfont{date}{size=\small}
+\setbeamerfont{page number in head/foot}{size=\footnotesize}
+
+% ---------- 左竖条 callout：block / alertblock / exampleblock ----------
+% 三种块共用一套视觉语言：左侧粗竖条 + 浅灰底，竖条颜色区分语义。
+% All three blocks share one look: thick left bar on a light gray body,
+% the bar color marks the semantics (accent / alert / example).
+\tcbset{
+  sdu callout/.style={
+    enhanced,
+    sharp corners,
+    boxrule=0pt,
+    colback=sdugray,
+    colframe=sdugray,
+    borderline west={2.5pt}{0pt}{#1},
+    left=8pt, right=8pt, top=2.5pt, bottom=3.5pt,
+    before skip=4pt, after skip=4pt,
+  },
+}
+\tcolorboxenvironment{block}{sdu callout=peaking}
+\tcolorboxenvironment{alertblock}{sdu callout=sdualert}
+\tcolorboxenvironment{exampleblock}{sdu callout=sduexample}
+\setbeamerfont{block title}{series=\bfseries}
+\setbeamerfont{block body}{size=\small}
+\setbeamerfont{block body alerted}{size=\small}
+\setbeamerfont{block body example}{size=\small}
+
+% ---------- 列表 / Lists ----------
+\useinnertheme{circles}
+
+% ---------- 章节页：深底 + 幽灵数字 + 白字章节名 ----------
+% Section page: dark background, giant ghost number, white section name
+\AtBeginSection[]{%
+  {%
+    \setbeamercolor{background canvas}{bg=sdudark}%
+    \setbeamercolor{normal text}{fg=white}%
+    \begin{frame}[plain]
+      \vfill
+      {\color{white!14!sdudark}\fontsize{104}{104}\selectfont\bfseries\thesection\par}%
+      \vskip -0.5em%
+      {\color{peaking}\rule{3em}{1.4pt}\par}%
+      \vskip 0.5em%
+      {\fontsize{34}{40}\selectfont\bfseries\color{white}\insertsection\par}%
+      \vfill
+    \end{frame}%
+  }%
+}
+
+% ---------- 可选页面边框：\usetheme[border]{SDU} ----------
+% Optional page border in the Jacquenetta style, off by default
+\ifSDU@border
+  \setbeamertemplate{background}{%
+    \tikz[overlay]\draw[line width=1.6pt]
+      (0.8pt,-0.8pt) rectangle (\paperwidth-0.8pt,-\paperheight+0.8pt);%
+  }
+\fi
+
+% ---------- 其他模板 / Misc templates ----------
 \setbeamertemplate{bibliography item}[text]
 \setbeamertemplate{caption}[numbered]
 
-% 在每个节和子节开始时插入目录 / Insert table of contents at the beginning of each section and subsection
-\AtBeginSection[]{
-  \begin{frame}
-    \tableofcontents[sectionstyle=show/shaded,subsectionstyle=show/shaded/hide,subsubsectionstyle=show/shaded/hide]
-  \end{frame}
-}
-
-\AtBeginSubsection[]{
-  \begin{frame}
-    \tableofcontents[sectionstyle=show/shaded,subsectionstyle=show/shaded/hide,subsubsectionstyle=show/shaded/hide]
-  \end{frame}
-}
-
-% 设置模式为所有模式 / Set mode to all
 \mode<all>
