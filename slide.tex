@@ -16,14 +16,16 @@
 \usepackage{luatexja-fontspec} % 中文字体支持, LuaLaTeX 版 / Chinese font support for LuaLaTeX
 
 % 设置中文字体 / Set Chinese fonts (luatexja-fontspec 宏名)
-\setmainjfont{Noto Sans CJK SC}
-\setsansjfont{Noto Sans CJK SC}
+% Medium 作为正文, Bold 作粗体; Regular 在投影上偏细
+\setmainjfont[BoldFont={Noto Sans CJK SC Bold}]{Noto Sans CJK SC Medium}
+\setsansjfont[BoldFont={Noto Sans CJK SC Bold}]{Noto Sans CJK SC Medium}
 \setmonojfont{Noto Sans Mono CJK SC}
 
 % 设置英文字体 / Set English fonts
 \setsansfont{Fira Sans} % 正文默认无衬线 / Beamer body text is sans by default
 \setmainfont{Fira Sans} % 主字体 / Main font
 \setmonofont{Fira Mono} % 等宽字体 / Monospace font
+\usepackage{firamath-otf} % 数学字体: Fira Math, 与 Fira Sans 同源
 
 % Overleaf 方案（无须自定义字体）/ Overleaf solution (no need to customize fonts)
 % \setsansjfont{FandolHei}[
@@ -75,12 +77,12 @@
 \subsection{主题特性}
 
 \begin{frame}{模板简介}
-    本模板是面向山东大学的 \LaTeX{} Beamer 主题，适用于学术汇报、
+    本模板是面向山东大学的 LaTeX Beamer 主题，适用于学术汇报、
     开题与答辩等场合，主要特性包括：
     \begin{itemize}
         \item 默认 \(16:9\) 宽屏长宽比，白底，山大红（CMYK 26/100/100/28）作强调色
         \item 无导航条，页脚为细进度条 + 页码；\texttt{[border]} 选项可加页面黑框
-        \item 使用 Lua\LaTeX{} 编译，通过 \texttt{luatexja} 支持中文排版
+        \item 使用 LuaLaTeX 编译，通过 \texttt{luatexja} 支持中文排版
         \item 配色集中在 \texttt{beamercolorthemeSDU.sty}，
               \texttt{\textbackslash sdusetaccent} 一条命令换强调色
         \item 每个 section 前自动生成深色章节页（幽灵数字 + 章节名）
@@ -128,7 +130,7 @@
 \subsection{编译方式}
 
 \begin{frame}[fragile]{编译方式}
-    需要支持中文的 Lua\LaTeX{} 工具链，本地编译命令为：
+    需要支持中文的 LuaLaTeX 工具链，本地编译命令为：
     \begin{lstlisting}[language=bash,numbers=none]
 latexmk          # 读取 .latexmkrc，自动完成全部编译步骤
 \end{lstlisting}
@@ -258,13 +260,13 @@ latexmk          # 读取 .latexmkrc，自动完成全部编译步骤
             \toprule
             引擎        & Unicode 支持 & 系统字体 \\
             \midrule
-            pdf\LaTeX & 需 CJKutf8  & 否    \\
-            Xe\LaTeX  & 原生         & 是    \\
-            Lua\LaTeX & 原生         & 是    \\
+            pdfLaTeX & 需 CJKutf8  & 否    \\
+            XeLaTeX  & 原生         & 是    \\
+            LuaLaTeX & 原生         & 是    \\
             \bottomrule
         \end{tabular}
     \end{table}
-    如表~\ref{tab:engines} 所示，本模板采用 Lua\LaTeX{}。
+    如表~\ref{tab:engines} 所示，本模板采用 LuaLaTeX。
 \end{frame}
 
 \subsection{插图与分栏}
