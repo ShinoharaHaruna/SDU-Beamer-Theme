@@ -86,15 +86,14 @@
 
 % ---------- frametitle：左对齐大字 + 下方细分隔线 ----------
 \setbeamertemplate{frametitle}{%
-  \vskip 1.0em%
+  \vskip 0.5em%
   {\usebeamerfont{frametitle}\usebeamercolor[fg]{frametitle}\insertframetitle\par}%
   \ifx\insertframesubtitle\@empty\else
-    \vskip 0.25em%
+    \vskip 0.15em%
     {\usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}\insertframesubtitle\par}%
   \fi
-  \vskip 0.4em%
-  {\color{peaking}\rule{\textwidth}{1pt}\par}%
-  \vskip 0.1em%
+  \vskip 0.25em%
+  {\color{peaking}\rule{\textwidth}{0.8pt}\par}%
 }
 \setbeamerfont{frametitle}{size=\Large,series=\bfseries}
 \setbeamerfont{framesubtitle}{size=\normalsize}
