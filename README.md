@@ -116,7 +116,18 @@ xelatex slide.tex
 
 ## Overleaf 模板
 
-经不严格测试，该模板对于 Overleaf 的免费计划来说太大了，一般表现为编译时间过长，被系统限制。因此，可以考虑本地构建，或者通过 GitHub Actions 自动构建。自动构建脚本已包含在仓库中。
+完整版 `slide.tex` 超出 Overleaf 免费计划的编译时限，主要表现为编译时间过长被系统限制。实测结论：免费版的主要瓶颈是 `biblatex/biber` 与 CJK 字体缓存这类一次性开销，而非文档本身复杂度；超时后多按几次 Recompile 有机会通过，因为字体缓存会保留在项目内。
+
+仓库附带 `pack_overleaf.sh`，可生成适配免费版的精简包，已验证可编译的组合：
+
+```bash
+./pack_overleaf.sh --no-bib              # XeLaTeX 精简包, Fandol 字体, 推荐
+./pack_overleaf.sh --pdflatex --no-bib   # pdfLaTeX 精简包, CJKutf8+gbsn, 备用
+```
+
+pdfLaTeX 变体的限制：中文仅限正文，标题/章节名/作者信息需用英文，且只有单一宋体字重。
+
+完整体验（参考文献、代码高亮、TikZ 示例、落霞孤鹜/更纱字体）**推荐使用仓库自带的 GitHub Actions 自动构建 PDF**，或直接本地 `latexmk` 构建。Overleaf 免费版下本模板功能受限：仅限精简示例、无参考文献、字体缩减为 Fandol/gbsn。`pack_overleaf.sh --help` 查看全部选项与免费版可用性说明。
 
 ## 感谢
 

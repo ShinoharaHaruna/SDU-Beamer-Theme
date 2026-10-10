@@ -116,7 +116,18 @@ You usually need to modify these settings according to your needs. If using Linu
 
 ## Overleaf Template
 
-After some limited testing, this template is too large for Overleaf's free plan, which often results in long compilation times and system throttling. Therefore, consider building it locally or automatically with GitHub Actions. The automated build script is included in the repository.
+The full `slide.tex` exceeds Overleaf's free-plan compile time limit. Testing shows the main bottleneck is one-time costs — BibLaTeX/Biber and CJK font caches — rather than document complexity; if a compile times out, pressing Recompile a few times may succeed since font caches persist in the project.
+
+The repository ships `pack_overleaf.sh`, which produces trimmed packages verified to compile on the free plan:
+
+```bash
+./pack_overleaf.sh --no-bib              # XeLaTeX minimal pack, Fandol fonts, recommended
+./pack_overleaf.sh --pdflatex --no-bib   # pdfLaTeX minimal pack, CJKutf8+gbsn, fallback
+```
+
+Limitations of the pdfLaTeX variant: Chinese is allowed only inside frame bodies (the title, section names and author info must be English), and only a single Song font weight is available.
+
+For the full experience (bibliography, code highlighting, TikZ examples, LXGW WenKai / Sarasa fonts), **the recommended route is the GitHub Actions workflow included in this repository**, which builds the PDF automatically; a local `latexmk` build works too. On Overleaf's free plan this template is feature-limited: minimal example only, no bibliography, and fonts reduced to Fandol/gbsn. Run `pack_overleaf.sh --help` for all options and free-plan compatibility notes.
 
 ## Credit
 
