@@ -5,6 +5,7 @@
 [![Last commit](https://img.shields.io/github/last-commit/ShinoharaHaruna/SDU-Beamer-Theme)](https://github.com/ShinoharaHaruna/SDU-Beamer-Theme/commits)
 [![Release](https://img.shields.io/github/v/release/ShinoharaHaruna/SDU-Beamer-Theme)](https://github.com/ShinoharaHaruna/SDU-Beamer-Theme/releases)
 ![Engine](https://img.shields.io/badge/engine-XeLaTeX-blue)
+[![Open in Overleaf](https://img.shields.io/badge/Open%20in-Overleaf-47A141?logo=overleaf&logoColor=white)](https://www.overleaf.com/docs?snip_uri=https://github.com/ShinoharaHaruna/SDU-Beamer-Theme/releases/latest/download/SDU-Beamer-Theme-overleaf-xelatex.zip&main_document=slide.tex)
 
 > **尝鲜 `dev` 分支**：现代化重设计——LuaLaTeX 引擎、Moloch/Jacquenetta 设计语言
 > （白底无导航条、细进度条、统一左竖条 callout、深色章节页），保留山大红与校徽。
@@ -127,6 +128,11 @@ xelatex slide.tex
 ## Overleaf 模板
 
 完整版 `slide.tex` 超出 Overleaf 免费计划的编译时限，主要表现为编译时间过长被系统限制。实测结论：免费版的主要瓶颈是 `biblatex/biber` 与 CJK 字体缓存这类一次性开销，而非文档本身复杂度；超时后多按几次 Recompile 有机会通过，因为字体缓存会保留在项目内。
+
+每个 release 附带两个预打包的 Overleaf 精简包（由 GitHub Actions 自动生成），点击即可直接在 Overleaf 中打开：
+
+- [![Open in Overleaf](https://img.shields.io/badge/Open%20in-Overleaf-47A141?logo=overleaf&logoColor=white)](https://www.overleaf.com/docs?snip_uri=https://github.com/ShinoharaHaruna/SDU-Beamer-Theme/releases/latest/download/SDU-Beamer-Theme-overleaf-xelatex.zip&main_document=slide.tex) XeLaTeX 变体，Fandol 字体，中文任意位置可用，推荐。打开后需将 Menu → Compiler 切换为 XeLaTeX（Overleaf 默认 pdfLaTeX）
+- [![Open in Overleaf](https://img.shields.io/badge/Open%20in-Overleaf%20(pdfLaTeX)-47A141?logo=overleaf&logoColor=white)](https://www.overleaf.com/docs?snip_uri=https://github.com/ShinoharaHaruna/SDU-Beamer-Theme/releases/latest/download/SDU-Beamer-Theme-overleaf-pdflatex.zip&main_document=slide.tex) pdfLaTeX 变体，与默认编译器一致，开箱即用
 
 仓库附带 `pack_overleaf.sh`，可生成适配免费版的精简包，已验证可编译的组合：
 
