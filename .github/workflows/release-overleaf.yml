@@ -1,0 +1,41 @@
+name: Pack Overleaf zips on release
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  pack:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install zip and ghostscript
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y zip ghostscript
+
+      - name: Build Overleaf zips
+        run: |
+          set -e
+          # XeLaTeX variant (primary): Fandol fonts, no biblatex
+          ./pack_overleaf.sh --no-bib \
+            -o SDU-Beamer-Theme-overleaf-xelatex.zip
+          # pdfLaTeX variant (fallback): CJKutf8 + gbsn, no biblatex
+          ./pack_overleaf.sh --pdflatex --no-bib \
+            -o SDU-Beamer-Theme-overleaf-pdflatex.zip
+          ls -lh SDU-Beamer-Theme-overleaf-*.zip
+
+      - name: Upload zips to release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release upload "${{ github.ref_name }}" \
+            SDU-Beamer-Theme-overleaf-xelatex.zip \
+            SDU-Beamer-Theme-overleaf-pdflatex.zip \
+            --clobber
