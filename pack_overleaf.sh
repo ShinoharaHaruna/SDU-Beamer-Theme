@@ -304,14 +304,15 @@ elif [[ $FULL -eq 1 ]]; then
         "$f"
 fi
 
-( cd "$STAGE" && zip -rq "$OLDPWD/$OUT" SDU-Beamer-Theme )
+case "$OUT" in /*) ;; *) OUT="$PWD/$OUT";; esac
+( cd "$STAGE" && zip -rq "$OUT" SDU-Beamer-Theme )
 
 SIZE=$(du -h "$OUT" | cut -f1)
 echo "已生成: $OUT ($SIZE)"
 if [[ $PDFLATEX -eq 1 ]]; then
-    echo "精简包(pdfLaTeX): 已用 CJKutf8/gbsn, 上传后请将 Overleaf Compiler 设为 pdfLaTeX"
+    echo "精简包(pdfLaTeX): 已用 CJKutf8/gbsn, 与 Overleaf 默认编译器一致可直接编译"
 elif [[ $FULL -eq 0 ]]; then
-    echo "精简包: slide.tex 为精简示例, Fandol 字体, 面向免费版 Overleaf"
+    echo "精简包: slide.tex 为精简示例, Fandol 字体, 面向免费版 Overleaf (需将 Compiler 切为 XeLaTeX)"
 elif [[ $WITH_FONTS -eq 0 ]]; then
     echo "完整包: 仓库 slide.tex, 已切换为 Fandol 字体, 未含 fonts/"
 else
